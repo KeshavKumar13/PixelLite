@@ -16,7 +16,7 @@ main{max-width:1280px;margin:26px auto;padding:0 18px}
 .drop{background:var(--card);border:2px dashed #c8cfdb;border-radius:18px;padding:30px 20px;text-align:center;cursor:pointer;transition:.2s}.drop:hover,.drop.drag{border-color:var(--accent);background:#fafaff}.drop strong{font-size:18px}.drop p{color:var(--muted);margin:8px 0 18px}
 .btn{border:0;border-radius:10px;padding:10px 16px;font-weight:700;cursor:pointer;background:#eef0f6;color:var(--text)}.btn.primary{background:var(--accent);color:white}.btn.danger{background:#fee4e2;color:#b42318}.btn:disabled{opacity:.45;cursor:not-allowed}
 .editor{display:grid;grid-template-columns:minmax(0,1fr) minmax(280px,330px);gap:18px;margin-top:18px}.preview{background:#111827;border-radius:16px;min-height:clamp(420px,62vh,680px);display:flex;align-items:center;justify-content:center;padding:20px;overflow:hidden;position:relative}
-#canvas{width:auto;max-width:100%;height:auto;max-height:min(72vh,620px);display:block;position:absolute;visibility:hidden;box-shadow:0 10px 30px #0005;cursor:crosshair}
+#canvas{width:auto;max-width:100%;height:auto;max-height:min(72vh,620px);display:block;position:absolute;visibility:hidden;box-shadow:0 10px 30px #0005;cursor:crosshair;touch-action:none}
 .empty{
   width:min(820px,100%);
   max-width:100%;
@@ -238,18 +238,76 @@ function draw(){
  if(crop)drawCropOverlay();
  $('empty').hidden=true;
 }
+function getCanvasPoint(e){
+ const r=canvas.getBoundingClientRect();
+ const x=Math.max(0,Math.min(canvas.width,(e.clientX-r.left)*canvas.width/r.width));
+ const y=Math.max(0,Math.min(canvas.height,(e.clientY-r.top)*canvas.height/r.height));
+ return {x,y};
+}
 function drawCropOverlay(){
- const r=canvas.getBoundingClientRect(), sx=canvas.width/r.width, sy=canvas.height/r.height;
- if(crop) {ctx.save();ctx.strokeStyle='#fff';ctx.lineWidth=2*sx;ctx.setLineDash([8*sx,5*sx]);ctx.strokeRect(crop.x*sx,crop.y*sy,crop.w*sx,crop.h*sy);ctx.restore();}
+ if(!crop)return;
+ ctx.save();
+ ctx.strokeStyle='#fff';
+ ctx.lineWidth=Math.max(2,canvas.width/700);
+ ctx.setLineDash([8,5]);
+ ctx.strokeRect(crop.x,crop.y,crop.w,crop.h);
+ ctx.restore();
 }
 let dragging=false,start={};
-canvas.addEventListener('pointerdown',e=>{if(!image)return;const r=canvas.getBoundingClientRect();start={x:(e.clientX-r.left)*canvas.width/r.width,y:(e.clientY-r.top)*canvas.height/r.height};dragging=true;canvas.setPointerCapture(e.pointerId)});
-canvas.addEventListener('pointermove',e=>{if(!dragging)return;const r=canvas.getBoundingClientRect(),x=(e.clientX-r.left)*canvas.width/r.width,y=(e.clientY-r.top)*canvas.height/r.height;let w=x-start.x,h=y-start.y;const a=$('aspect').value;if(a!=='free'){const signX=Math.sign(w)||1,signY=Math.sign(h)||1;h=Math.abs(w)/+a*signY;w=Math.abs(w)*signX}crop={x:Math.min(start.x,x),y:Math.min(start.y,y),w:Math.abs(w),h:Math.abs(h)};draw()});
-canvas.addEventListener('pointerup',()=>dragging=false);
+canvas.addEventListener('pointerdown',e=>{
+ if(!image)return;
+ start=getCanvasPoint(e);
+ crop={x:start.x,y:start.y,w:0,h:0};
+ dragging=true;
+ canvas.setPointerCapture(e.pointerId);
+});
+canvas.addEventListener('pointermove',e=>{
+ if(!dragging)return;
+ const p=getCanvasPoint(e);
+ const a=$('aspect').value;
+ let left=Math.min(start.x,p.x),top=Math.min(start.y,p.y);
+ let width=Math.abs(p.x-start.x),height=Math.abs(p.y-start.y);
+ if(a!=='free'){
+   const ratio=+a;
+   if(width>0) height=width/ratio;
+   else if(height>0) width=height*ratio;
+   if(p.x<start.x) left=start.x-width;
+   if(p.y<start.y) top=start.y-height;
+ }
+ width=Math.min(width,canvas.width);
+ height=Math.min(height,canvas.height);
+ left=Math.max(0,Math.min(left,canvas.width-width));
+ top=Math.max(0,Math.min(top,canvas.height-height));
+ if(a!=='free'){
+   const ratio=+a;
+   if(width/Math.max(height,1)>ratio) width=height*ratio;
+   else height=width/ratio;
+   left=Math.max(0,Math.min(left,canvas.width-width));
+   top=Math.max(0,Math.min(top,canvas.height-height));
+ }
+ crop={x:left,y:top,w:width,h:height};
+ draw();
+});
+function stopDragging(){dragging=false;}
+canvas.addEventListener('pointerup',stopDragging);
+canvas.addEventListener('pointercancel',stopDragging);
 $('applyCrop').onclick=()=>{
  if(!crop||crop.w<2||crop.h<2)return alert('Drag on the image first to select a crop area.');
- const temp=document.createElement('canvas');temp.width=Math.round(crop.w);temp.height=Math.round(crop.h);temp.getContext('2d').drawImage(image,crop.x,crop.y,crop.w,crop.h,0,0,temp.width,temp.height);
- const im=new Image();im.onload=()=>{image=im;$('w').value=im.width;$('h').value=im.height;crop=null;draw()};im.src=temp.toDataURL('image/png');
+ const temp=document.createElement('canvas');
+ temp.width=Math.max(1,Math.round(crop.w));
+ temp.height=Math.max(1,Math.round(crop.h));
+ const tctx=temp.getContext('2d');
+ // Crop the currently rendered canvas so resize/filter/adjustment changes are preserved.
+ tctx.drawImage(canvas,crop.x,crop.y,crop.w,crop.h,0,0,temp.width,temp.height);
+ const im=new Image();
+ im.onload=()=>{
+   image=im;
+   $('w').value=im.width;
+   $('h').value=im.height;
+   crop=null;
+   draw();
+ };
+ im.src=temp.toDataURL('image/png');
 };
 $('format').onchange=()=>{if($('format').value==='image/png'){$('quality').disabled=true;$('qv').textContent='N/A'}else{$('quality').disabled=false;$('qv').textContent=$('quality').value+'%'}};
 $('quality').oninput=()=>{$('qv').textContent=$('quality').value+'%'};
