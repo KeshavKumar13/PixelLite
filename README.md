@@ -286,3 +286,13 @@ Phases 18–23 are documented above as experimental iterations that were tested 
 PixelLite's core image editing and conversion operations are performed locally in the browser. Images do not need to be uploaded to a PixelLite application server for processing.
 
 For the complete privacy statement, see `privacy.html`.
+
+
+## Phase 25
+
+Added a dedicated 1200×630 Open Graph social preview image for PixelLite and updated the homepage Open Graph and Twitter image metadata to use it. This improves link previews when sharing `https://pixellite.in/`.
+
+
+## Phase 26
+
+Improved mobile navigation across all pages. The desktop navigation remains unchanged, while phones and narrow screens use a compact hamburger menu to prevent navigation links from overlapping the header.

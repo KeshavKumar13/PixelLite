@@ -51,7 +51,8 @@
 <a href="about.html">About</a>
 <a href="contact.html">Contact</a>
 <a href="privacy.html">Privacy</a>
-</nav></header>
+</nav><button class="mobile-menu-toggle" type="button" aria-label="Open menu" aria-expanded="false"><span></span></button>
+</header>
 <main class="converter-page">
 <section class="converter-hero">
 <h1>Image Editor</h1>
@@ -141,5 +142,22 @@
 
 <script src="js/app.js?v=16.1"></script>
 
+<script>
+(function(){
+  const header=document.querySelector('header');
+  const toggle=document.querySelector('.mobile-menu-toggle');
+  if(!header||!toggle)return;
+  toggle.addEventListener('click',()=>{
+    const open=header.classList.toggle('nav-open');
+    toggle.setAttribute('aria-expanded',String(open));
+    toggle.setAttribute('aria-label',open?'Close menu':'Open menu');
+  });
+  document.querySelectorAll('.site-nav a').forEach(a=>a.addEventListener('click',()=>{
+    header.classList.remove('nav-open');
+    toggle.setAttribute('aria-expanded','false');
+    toggle.setAttribute('aria-label','Open menu');
+  }));
+})();
+</script>
 </body>
 </html>

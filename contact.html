@@ -32,6 +32,7 @@
 <a href="contact.html">Contact</a>
 <a href="privacy.html">Privacy</a>
 </nav>
+<button class="mobile-menu-toggle" type="button" aria-label="Open menu" aria-expanded="false"><span></span></button>
 </header>
 <main class="info-page"><article class="info-card"><h1>Contact PixelLite</h1>
 <p>Have a question, found a problem, or have a suggestion for PixelLite?</p>
@@ -42,5 +43,22 @@
 <footer>Your images stay on your device and are processed locally in your browser.<div class="page-footer-links"><a href="index.html">Home</a><a href="editor.html">Editor</a><a href="convert.html">Convert</a><a href="about.html">About</a><a href="contact.html">Contact</a><a href="privacy.html">Privacy</a></div>
 <br><span class="version">PixelLite v3.6 Phase 6</span>
 </footer>
+<script>
+(function(){
+  const header=document.querySelector('header');
+  const toggle=document.querySelector('.mobile-menu-toggle');
+  if(!header||!toggle)return;
+  toggle.addEventListener('click',()=>{
+    const open=header.classList.toggle('nav-open');
+    toggle.setAttribute('aria-expanded',String(open));
+    toggle.setAttribute('aria-label',open?'Close menu':'Open menu');
+  });
+  document.querySelectorAll('.site-nav a').forEach(a=>a.addEventListener('click',()=>{
+    header.classList.remove('nav-open');
+    toggle.setAttribute('aria-expanded','false');
+    toggle.setAttribute('aria-label','Open menu');
+  }));
+})();
+</script>
 </body>
 </html>

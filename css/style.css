@@ -868,3 +868,39 @@ a.tool-card:active,
 @media(max-width:760px){
   .editor-upload-card{padding:15px!important}
 }
+
+
+/* Phase 26: mobile navigation */
+.mobile-menu-toggle{
+  display:none;
+  width:42px;height:42px;padding:0;
+  border:1px solid var(--line);
+  border-radius:10px;
+  background:var(--card);
+  color:var(--text);
+  align-items:center;justify-content:center;
+  cursor:pointer;
+}
+.mobile-menu-toggle span,.mobile-menu-toggle span::before,.mobile-menu-toggle span::after{
+  display:block;width:20px;height:2px;background:currentColor;border-radius:2px;
+}
+.mobile-menu-toggle span{position:relative}
+.mobile-menu-toggle span::before,.mobile-menu-toggle span::after{content:"";position:absolute;left:0}
+.mobile-menu-toggle span::before{top:-6px}
+.mobile-menu-toggle span::after{top:6px}
+@media(max-width:700px){
+  header{position:sticky;top:0;z-index:50;}
+  .mobile-menu-toggle{display:flex;flex:0 0 auto}
+  .site-nav{
+    display:none;
+    position:absolute;top:100%;left:0;right:0;
+    flex-direction:column;align-items:stretch;gap:0;
+    padding:8px 16px 12px;
+    background:var(--card);
+    border-bottom:1px solid var(--line);
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+  }
+  header.nav-open .site-nav{display:flex}
+  .site-nav a{padding:12px 10px;font-size:15px;border-radius:8px}
+  .site-nav a:hover{background:var(--bg)}
+}
