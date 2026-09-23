@@ -3,6 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KYXXS5396T"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-KYXXS5396T');
+</script>
 <meta name="description" content="Fast browser based image editor for crop, resize, filters and image compression.">
 <title>PixelLite — Image Editor</title>
 <style>
@@ -126,6 +134,7 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:28px}
   .placeholder-title{font-size:20px}
   .placeholder-text{font-size:12px}
 }.preview{min-height:400px}.panel{max-height:none}.hero h1{font-size:28px}header{padding:0 16px}.placeholder-features{grid-template-columns:repeat(2,1fr)}.placeholder-title{font-size:23px}.placeholder-image{max-height:180px}}
+footer .version{display:inline-block;margin-top:5px;font-size:10px;color:#98a2b3;letter-spacing:.2px;user-select:none}
 </style>
 </head>
 <body>
@@ -184,7 +193,7 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:28px}
   </aside>
 </div>
 </main>
-<footer>PixelLite processes images locally in your browser. No image is sent to a server.</footer>
+<footer>PixelLite processes images locally in your browser. No image is sent to a server.<br><span class="version">PixelLite v3.3</span></footer>
 
 <script>
 const $=id=>document.getElementById(id);
