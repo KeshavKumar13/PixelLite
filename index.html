@@ -50,6 +50,7 @@ main{max-width:1280px;margin:26px auto;padding:0 18px}
 .btn{border:0;border-radius:10px;padding:10px 16px;font-weight:700;cursor:pointer;background:#eef0f6;color:var(--text)}.btn.primary{background:var(--accent);color:white}.btn.danger{background:#fee4e2;color:#b42318}.btn:disabled{opacity:.45;cursor:not-allowed}
 .editor{display:grid;grid-template-columns:minmax(0,1fr) minmax(280px,330px);gap:18px;margin-top:18px}.preview{background:#111827;border-radius:16px;min-height:clamp(420px,62vh,680px);display:flex;align-items:center;justify-content:center;padding:20px;overflow:hidden;position:relative}
 #canvas{width:auto;max-width:100%;height:auto;max-height:min(72vh,620px);display:block;position:absolute;visibility:hidden;box-shadow:0 10px 30px #0005;cursor:crosshair;touch-action:none}
+#cropOverlay{position:absolute;display:none;box-sizing:border-box;border:2px dashed #fff;pointer-events:none;z-index:3;border-radius:2px}
 .empty{
   width:min(820px,100%);
   max-width:100%;
@@ -187,6 +188,7 @@ footer .version{display:inline-block;margin-top:5px;font-size:10px;color:#98a2b3
     </div>
   </div>
   <canvas id="canvas"></canvas>
+  <div id="cropOverlay" aria-hidden="true"></div>
 </div>
   </div>
   <aside class="panel">
@@ -212,7 +214,7 @@ footer .version{display:inline-block;margin-top:5px;font-size:10px;color:#98a2b3
     <div class="section"><h3>Export & compress</h3>
       <label>Format</label><select id="format"><option value="image/jpeg">JPG</option><option value="image/webp">WEBP</option><option value="image/png">PNG</option></select>
       <label>Quality <span id="qv">82%</span></label><input id="quality" type="range" min="10" max="100" value="82">
-      <p class="stats" id="estimate">Output size is calculated when you download.</p>
+      <p class="stats" id="estimate">Estimated output size will appear here.</p>
       <button class="btn primary" id="download" style="width:100%;margin-top:8px">Download Image</button>
     </div>
   </aside>
@@ -222,7 +224,7 @@ footer .version{display:inline-block;margin-top:5px;font-size:10px;color:#98a2b3
 
 <script>
 const $=id=>document.getElementById(id);
-const file=$('file'),drop=$('drop'),choose=$('choose'),editor=$('editor'),canvas=$('canvas'),ctx=canvas.getContext('2d');
+const file=$('file'),drop=$('drop'),choose=$('choose'),editor=$('editor'),canvas=$('canvas'),cropOverlay=$('cropOverlay'),ctx=canvas.getContext('2d');
 let original=null, image=null, crop=null, filter='none', baseName='image';
 
 choose.onclick=()=>file.click(); drop.onclick=e=>{if(e.target===drop||e.target.tagName==='P'||e.target.tagName==='STRONG')file.click()};
@@ -234,7 +236,7 @@ file.addEventListener('change',e=>{if(e.target.files[0])loadFile(e.target.files[
 function loadFile(f){
  if(!f.type.startsWith('image/')) return alert('Please choose an image file.');
  baseName=f.name.replace(/\.[^.]+$/,'')||'image';
- const r=new FileReader(); r.onload=()=>{const im=new Image();im.onload=()=>{original=im;image=im;resetAll(false);editor.hidden=false;drop.hidden=true;draw()};im.src=r.result};r.readAsDataURL(f);
+ const r=new FileReader(); r.onload=()=>{const im=new Image();im.onload=()=>{original=im;image=im;resetAll(false);editor.hidden=false;drop.hidden=true;draw();scheduleEstimate()};im.src=r.result};r.readAsDataURL(f);
 }
 function resetAll(full=true){
  filter='none'; crop=null;
@@ -242,18 +244,18 @@ function resetAll(full=true){
  $('brightness').value=100;$('contrast').value=100;$('saturation').value=100;
  $('aspect').value='free'; $('format').value='image/jpeg'; $('quality').value=82;
  document.querySelectorAll('[data-filter]').forEach(b=>b.classList.toggle('active',b.dataset.filter==='none'));
- if(full)draw();
+ if(full){draw();scheduleEstimate();}
 }
 $('reset').onclick=()=>{if(original){image=original;resetAll();}};
-$('clear').onclick=()=>{editor.hidden=true;drop.hidden=false;file.value='';original=null;image=null;canvas.style.position='absolute';canvas.style.visibility='hidden';$('empty').hidden=false};
+$('clear').onclick=()=>{editor.hidden=true;drop.hidden=false;file.value='';original=null;image=null;canvas.style.position='absolute';canvas.style.visibility='hidden';cropOverlay.style.display='none';$('empty').hidden=false};
 
 ['w','h'].forEach(id=>$(id).addEventListener('input',e=>{
  if(!image)return;
  if($('lock').checked){const ratio=image.naturalWidth/image.naturalHeight;if(id==='w')$('h').value=Math.round(+e.target.value/ratio);else $('w').value=Math.round(+e.target.value*ratio)}
- draw();
+ draw();scheduleEstimate();
 }));
-document.querySelectorAll('[data-filter]').forEach(b=>b.onclick=()=>{filter=b.dataset.filter;document.querySelectorAll('[data-filter]').forEach(x=>x.classList.remove('active'));b.classList.add('active');draw()});
-['brightness','contrast','saturation'].forEach(id=>$(id).oninput=()=>{ $(id[0]+'v').textContent=$(id).value+'%';draw()});
+document.querySelectorAll('[data-filter]').forEach(b=>b.onclick=()=>{filter=b.dataset.filter;document.querySelectorAll('[data-filter]').forEach(x=>x.classList.remove('active'));b.classList.add('active');draw();scheduleEstimate()});
+['brightness','contrast','saturation'].forEach(id=>$(id).oninput=()=>{ $(id[0]+'v').textContent=$(id).value+'%';draw();scheduleEstimate()});
 $('aspect').onchange=()=>{crop=null;draw()};
 
 function cssFilter(){
@@ -269,9 +271,10 @@ function draw(){
  if(!image)return;
  const w=Math.max(1,+$('w').value||image.naturalWidth),h=Math.max(1,+$('h').value||image.naturalHeight);
  canvas.width=w;canvas.height=h;canvas.style.position='relative';canvas.style.visibility='visible';ctx.filter=cssFilter();ctx.drawImage(image,0,0,w,h);ctx.filter='none';
- if(crop)drawCropOverlay();
+ drawCropOverlay();
  $('empty').hidden=true;
 }
+
 function getCanvasPoint(e){
  const r=canvas.getBoundingClientRect();
  const x=Math.max(0,Math.min(canvas.width,(e.clientX-r.left)*canvas.width/r.width));
@@ -279,13 +282,15 @@ function getCanvasPoint(e){
  return {x,y};
 }
 function drawCropOverlay(){
- if(!crop)return;
- ctx.save();
- ctx.strokeStyle='#fff';
- ctx.lineWidth=Math.max(2,canvas.width/700);
- ctx.setLineDash([8,5]);
- ctx.strokeRect(crop.x,crop.y,crop.w,crop.h);
- ctx.restore();
+ if(!crop){cropOverlay.style.display='none';return;}
+ const cr=canvas.getBoundingClientRect();
+ const pr=canvas.parentElement.getBoundingClientRect();
+ const sx=cr.width/Math.max(canvas.width,1), sy=cr.height/Math.max(canvas.height,1);
+ cropOverlay.style.display='block';
+ cropOverlay.style.left=(cr.left-pr.left+crop.x*sx)+'px';
+ cropOverlay.style.top=(cr.top-pr.top+crop.y*sy)+'px';
+ cropOverlay.style.width=(crop.w*sx)+'px';
+ cropOverlay.style.height=(crop.h*sy)+'px';
 }
 let dragging=false,start={};
 canvas.addEventListener('pointerdown',e=>{
@@ -325,26 +330,52 @@ canvas.addEventListener('pointermove',e=>{
 function stopDragging(){dragging=false;}
 canvas.addEventListener('pointerup',stopDragging);
 canvas.addEventListener('pointercancel',stopDragging);
+function scheduleEstimate(){
+ estimateRequest++;
+ clearTimeout(estimateTimer);
+ $('estimate').textContent='Calculating output size…';
+ estimateTimer=setTimeout(updateEstimate,120);
+}
+let estimateTimer=0,estimateRequest=0;
+function updateEstimate(){
+ if(!image)return;
+ const type=$('format').value, q=+$('quality').value/100, request=++estimateRequest;
+ canvas.toBlob(blob=>{
+   if(!blob||request!==estimateRequest)return;
+   $('estimate').textContent='Estimated output: '+formatBytes(blob.size);
+ },type,type==='image/png'?undefined:q);
+}
 $('applyCrop').onclick=()=>{
  if(!crop||crop.w<2||crop.h<2)return alert('Drag on the image first to select a crop area.');
+ const selected={x:crop.x,y:crop.y,w:crop.w,h:crop.h};
  const temp=document.createElement('canvas');
- temp.width=Math.max(1,Math.round(crop.w));
- temp.height=Math.max(1,Math.round(crop.h));
+ temp.width=Math.max(1,Math.round(selected.w));
+ temp.height=Math.max(1,Math.round(selected.h));
  const tctx=temp.getContext('2d');
- // Crop the currently rendered canvas so resize/filter/adjustment changes are preserved.
- tctx.drawImage(canvas,crop.x,crop.y,crop.w,crop.h,0,0,temp.width,temp.height);
+ // Crop the rendered image only. The crop rectangle is a separate DOM overlay, so it is never baked into the image.
+ tctx.drawImage(canvas,selected.x,selected.y,selected.w,selected.h,0,0,temp.width,temp.height);
+ crop=null;
+ dragging=false;
+ cropOverlay.style.display='none';
  const im=new Image();
  im.onload=()=>{
    image=im;
    $('w').value=im.width;
    $('h').value=im.height;
-   crop=null;
    draw();
+   scheduleEstimate();
  };
  im.src=temp.toDataURL('image/png');
 };
-$('format').onchange=()=>{if($('format').value==='image/png'){$('quality').disabled=true;$('qv').textContent='N/A'}else{$('quality').disabled=false;$('qv').textContent=$('quality').value+'%'}};
-$('quality').oninput=()=>{$('qv').textContent=$('quality').value+'%'};
+$('format').onchange=()=>{
+ if($('format').value==='image/png'){$('quality').disabled=true;$('qv').textContent='N/A'}
+ else{$('quality').disabled=false;$('qv').textContent=$('quality').value+'%'}
+ scheduleEstimate();
+};
+$('quality').oninput=()=>{
+ $('qv').textContent=$('quality').value+'%';
+ scheduleEstimate();
+};
 
 $('download').onclick=()=>{
  const type=$('format').value, q=+$('quality').value/100;
@@ -353,7 +384,7 @@ $('download').onclick=()=>{
    $('estimate').textContent='Output: '+formatBytes(blob.size);
    const ext=type==='image/png'?'png':type==='image/webp'?'webp':'jpg';
    const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=baseName+'-edited.'+ext;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000);
- },type,q);
+ },type,type==='image/png'?undefined:q);
 };
 function formatBytes(n){return n<1024?(n+' B'):(n<1048576?(n/1024).toFixed(1)+' KB':(n/1048576).toFixed(2)+' MB')}
 </script>
