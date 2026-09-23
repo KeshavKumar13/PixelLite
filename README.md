@@ -296,3 +296,6 @@ Added a dedicated 1200×630 Open Graph social preview image for PixelLite and up
 ## Phase 26
 
 Improved mobile navigation across all pages. The desktop navigation remains unchanged, while phones and narrow screens use a compact hamburger menu to prevent navigation links from overlapping the header.
+
+## Phase History
+- Phase 27: `PixelLite v3.6 Phase 27 add Google AdSense site verification and ads.txt`
