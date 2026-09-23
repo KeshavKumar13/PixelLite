@@ -38,11 +38,15 @@
   gtag('config', 'G-KYXXS5396T');
 </script>
 <title>PixelLite – Free Online Image Editor, Compressor &amp; Resizer</title>
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="apple-touch-icon" href="assets/favicon.svg">
 <style>
 :root{--bg:#f5f7fb;--card:#fff;--text:#172033;--muted:#667085;--line:#dfe4ec;--accent:#4f46e5;--accent2:#7c3aed}
 *{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--text)}
 header{height:70px;background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 28px;position:sticky;top:0;z-index:5}
-.logo{font-size:21px;font-weight:800;letter-spacing:-.5px}.logo span{color:var(--accent)}
+.brand{display:flex;align-items:center;gap:9px;min-width:0}.logo{font-size:21px;font-weight:800;letter-spacing:-.5px}.logo span{color:var(--accent)}
+.brand-mark{width:30px;height:30px;border-radius:9px;background:linear-gradient(135deg,#4f46e5,#7c3aed);display:grid;grid-template-columns:repeat(2,8px);grid-template-rows:repeat(2,8px);gap:3px;place-content:center;box-shadow:0 5px 14px rgba(79,70,229,.22);flex:0 0 auto}
+.brand-mark i{display:block;background:#fff;border-radius:2px}.brand-mark i:nth-child(1){opacity:.95}.brand-mark i:nth-child(2){opacity:.72}.brand-mark i:nth-child(3){opacity:.72}.brand-mark i:nth-child(4){opacity:.95}
 header small{color:var(--muted)}
 main{max-width:1280px;margin:26px auto;padding:0 18px}
 .hero{text-align:center;margin:20px 0 25px}.hero h1{font-size:34px;margin:0 0 8px;letter-spacing:-1px}.hero p{color:var(--muted);margin:0}
@@ -100,6 +104,10 @@ main{max-width:1280px;margin:26px auto;padding:0 18px}
   align-items:center;
   gap:3px;
 }
+.feature-card{min-width:0;border:0;background:transparent;color:inherit;display:flex;flex-direction:column;align-items:center;gap:3px;padding:0;cursor:pointer;font:inherit}
+.feature-card b{cursor:pointer;transition:transform .18s ease,background .18s ease}
+.feature-card:hover b{transform:translateY(-2px);background:#403b80}
+.feature-card:focus-visible{outline:2px solid #8b7cff;outline-offset:5px;border-radius:10px}
 .placeholder-features b{
   width:clamp(36px,4vw,48px);
   height:clamp(36px,4vw,48px);
@@ -116,12 +124,7 @@ main{max-width:1280px;margin:26px auto;padding:0 18px}
   color:#aab3c4;
   white-space:nowrap;
 }
-.empty{color:#98a2b3;text-align:center}.panel{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;overflow:auto;max-height:min(78vh,720px);min-width:0}.section{padding-bottom:18px;margin-bottom:18px;border-bottom:1px solid var(--line)}.section:last-child{border-bottom:0;margin-bottom:0}
-h3{font-size:14px;margin:0 0 12px}.row{display:flex;gap:8px;align-items:center}.row>*{min-width:0;flex:1}label{display:block;font-size:12px;font-weight:700;color:#475467;margin:10px 0 5px}input[type=number],select{width:100%;min-width:0;padding:9px;border:1px solid var(--line);border-radius:8px;background:white}input[type=range]{width:100%}
-.check{display:flex;align-items:center;gap:8px;font-size:13px;color:#475467;margin-top:10px}.check input{width:auto}
-.filter-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px}.filter-grid button{padding:9px 6px}.filter-grid button.active{background:#e0e7ff;color:#3730a3}
-.stats{font-size:12px;color:var(--muted);line-height:1.7}.toolbar{display:flex;gap:8px;margin-bottom:10px}.toolbar .btn{flex:1}
-footer{text-align:center;color:var(--muted);font-size:12px;padding:28px}
+.empty{color:#98a2b3;text-align:center}.panel{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:12px;overflow:auto;height:100%;min-width:0;align-self:stretch}.accordion{display:flex;flex-direction:column;gap:9px}.accordion-item{scroll-margin-top:78px;border:1px solid var(--line);border-radius:13px;background:#fff;overflow:hidden}.accordion-trigger{width:100%;border:0;background:#fff;color:var(--text);padding:14px 15px;display:flex;align-items:center;justify-content:space-between;gap:12px;text-align:left;font:inherit;font-size:14px;font-weight:700;cursor:pointer;min-height:50px}.accordion-trigger:hover{background:#fafaff}.accordion-trigger:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}.accordion-trigger .chevron{width:9px;height:9px;border-right:2px solid #667085;border-bottom:2px solid #667085;transform:rotate(45deg);transition:transform .22s ease;margin-right:3px;flex:0 0 auto}.accordion-item.open .accordion-trigger .chevron{transform:rotate(225deg);margin-top:5px}.accordion-content{display:grid;grid-template-rows:0fr;transition:grid-template-rows .28s ease}.accordion-content-inner{min-height:0;overflow:hidden;padding:0 14px}.accordion-item.open .accordion-content{grid-template-rows:1fr}.accordion-item.open .accordion-content-inner{padding-bottom:15px}h3{font-size:14px;font-weight:600;margin:0 0 12px}.row{display:flex;gap:8px;align-items:center}.row>*{min-width:0;flex:1}label{display:block;font-size:12px;font-weight:600;color:#475467;margin:10px 0 5px}input[type=number],select{width:100%;min-width:0;padding:10px;border:1px solid var(--line);border-radius:9px;background:white;font:inherit}input[type=range]{width:100%;height:30px}.check{display:flex;align-items:center;gap:8px;font-size:13px;color:#475467;margin-top:10px;min-height:24px}.check input{width:auto}.filter-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px}.filter-grid button{padding:10px 6px}.filter-grid button.active{background:#e0e7ff;color:#3730a3}.stats{font-size:12px;color:var(--muted);line-height:1.7}.stats.warning{color:#b42318;font-weight:600}.download-area{margin-top:10px;padding:10px 2px 2px}.download-area .btn{width:100%;min-height:50px;font-size:15px}.toolbar{display:flex;gap:8px;margin-bottom:10px}.toolbar .btn{flex:1}footer{text-align:center;color:var(--muted);font-size:12px;padding:28px}
 @media(max-width:1100px){
   main{max-width:1100px}
   .editor{grid-template-columns:minmax(0,1fr) 300px}
@@ -130,41 +133,60 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:28px}
 @media(max-width:850px){
   header{height:auto;min-height:64px;padding:12px 16px;gap:10px}
   header small{font-size:11px}
-  main{margin:18px auto;padding:0 12px}
-  .hero{margin:14px 0 18px}
+  main{margin:16px auto;padding:0 12px}
+  .hero{margin:12px 0 16px}
   .hero h1{font-size:clamp(24px,7vw,30px)}
-  .editor{grid-template-columns:1fr;gap:14px}
-  .preview{min-height:clamp(380px,65vh,560px);padding:14px}
-  .panel{max-height:none}
+  .hero p{font-size:13px;line-height:1.45}
+  .editor{grid-template-columns:1fr;gap:12px}
+  .preview{min-height:clamp(350px,58vh,540px);padding:10px;border-radius:14px}
+  .panel{padding:0;border:0;background:transparent;overflow:visible;height:auto;align-self:auto}
+  .accordion{gap:8px}
+  .accordion-item{border-radius:12px;box-shadow:0 1px 2px rgba(16,24,40,.04)}
+  .accordion-trigger{min-height:56px;padding:15px 16px;font-size:15px}
+  .accordion-content-inner{padding:0 16px}
+  .accordion-item.open .accordion-content-inner{padding-bottom:16px}
+  .download-area{padding:10px 0 0;position:sticky;bottom:8px;z-index:4}
+  .download-area .btn{min-height:54px;border-radius:12px;box-shadow:0 8px 22px rgba(15,23,42,.16)}
+  .toolbar{position:static;margin-bottom:8px}
+  .toolbar .btn{min-height:44px}
   .placeholder-features{grid-template-columns:repeat(4,minmax(0,1fr));gap:7px}
-  .placeholder-image{width:min(360px,70%)}
-  .toolbar{position:sticky;top:72px;z-index:2}
+  .placeholder-image{width:min(360px,78%)}
 }
 @media(max-width:560px){
   header .logo{font-size:19px}
   header small{display:none}
-  .drop{padding:24px 14px}
-  .editor{margin-top:12px}
-  .preview{min-height:430px;border-radius:13px}
-  .empty{padding:12px}
-  .placeholder-image{width:min(320px,92%);margin-bottom:14px}
-  .placeholder-text{margin-bottom:20px}
-  .placeholder-features{grid-template-columns:repeat(2,1fr);gap:16px 8px}
+  .drop{padding:26px 14px;border-radius:14px}
+  .drop strong{font-size:17px}
+  .drop .btn{width:100%;min-height:46px}
+  .editor{margin-top:10px}
+  .preview{min-height:410px}
+  .empty{padding:8px}
+  .placeholder-image{width:min(300px,88%);margin-bottom:13px}
+  .placeholder-title{font-size:22px}
+  .placeholder-text{margin-bottom:18px;font-size:12px}
+  .placeholder-features{grid-template-columns:repeat(2,1fr);gap:14px 8px}
   .placeholder-features small{white-space:normal}
-  .row{flex-direction:column;align-items:stretch}
-  .toolbar .btn{padding:10px}
+  .row{flex-direction:column;align-items:stretch;gap:2px}
+  .row>*{width:100%}
+  input[type=number],select{min-height:44px;font-size:15px}
+  input[type=range]{height:36px}
+  .filter-grid button{min-height:44px}
+  label{font-size:12px}
+  .stats{font-size:11px}
 }
 @media(max-width:360px){
   main{padding:0 8px}
   .preview{min-height:390px}
   .placeholder-title{font-size:20px}
   .placeholder-text{font-size:12px}
-}.preview{min-height:400px}.panel{max-height:none}.hero h1{font-size:28px}header{padding:0 16px}.placeholder-features{grid-template-columns:repeat(2,1fr)}.placeholder-title{font-size:23px}.placeholder-image{max-height:180px}}
+}
+.preview{min-height:400px}.placeholder-features{grid-template-columns:repeat(4,minmax(0,1fr))}.placeholder-title{font-size:23px}.placeholder-image{max-height:180px}
+@media(max-width:560px){.preview{min-height:410px}.placeholder-features{grid-template-columns:repeat(2,1fr)}}
 footer .version{display:inline-block;margin-top:5px;font-size:10px;color:#98a2b3;letter-spacing:.2px;user-select:none}
 </style>
 </head>
 <body>
-<header><div class="logo">Pixel<span>Lite</span></div><small>Private • Runs in your browser</small></header>
+<header><div class="brand" aria-label="PixelLite home"><div class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></div><div class="logo">Pixel<span>Lite</span></div></div><small>Private • Runs in your browser</small></header>
 <main>
 <section class="hero"><h1>Free Online Image Editor</h1><p>Crop, resize, filter and compress images locally in your browser.</p></section>
 <div id="drop" class="drop">
@@ -181,10 +203,10 @@ footer .version{display:inline-block;margin-top:5px;font-size:10px;color:#98a2b3
     <div class="placeholder-title">Your image will <span>appear here</span></div>
     <div class="placeholder-text">Upload an image to start editing — crop, resize, apply filters, and reduce file size instantly in your browser.</div>
     <div class="placeholder-features">
-      <div><b>✂</b><strong>Crop</strong><small>Trim to perfection</small></div>
-      <div><b>☷</b><strong>Filters</strong><small>Enhance your image</small></div>
-      <div><b>↗</b><strong>Resize</strong><small>Custom dimensions</small></div>
-      <div><b>↓</b><strong>Compress</strong><small>Smaller file size</small></div>
+      <button class="feature-card" type="button" data-open-section="Crop"><b>✂</b><strong>Crop</strong><small>Trim to perfection</small></button>
+      <button class="feature-card" type="button" data-open-section="Filters"><b>☷</b><strong>Filters</strong><small>Enhance your image</small></button>
+      <button class="feature-card" type="button" data-open-section="Resize"><b>↗</b><strong>Resize</strong><small>Custom dimensions</small></button>
+      <button class="feature-card" type="button" data-open-section="Compress"><b>↓</b><strong>Compress</strong><small>Smaller file size</small></button>
     </div>
   </div>
   <canvas id="canvas"></canvas>
@@ -192,35 +214,49 @@ footer .version{display:inline-block;margin-top:5px;font-size:10px;color:#98a2b3
 </div>
   </div>
   <aside class="panel">
-    <div class="section"><h3>Resize</h3>
-      <div class="row"><div><label>Width (px)</label><input id="w" type="number" min="1"></div><div><label>Height (px)</label><input id="h" type="number" min="1"></div></div>
-      <label class="check"><input id="lock" type="checkbox" checked> Lock aspect ratio</label>
+    <div class="accordion" id="controlsAccordion">
+      <section class="accordion-item open" data-section="Resize">
+        <button class="accordion-trigger" type="button" aria-expanded="true"><span>Resize</span><i class="chevron" aria-hidden="true"></i></button>
+        <div class="accordion-content"><div class="accordion-content-inner">
+          <div class="row"><div><label>Width (px)</label><input id="w" type="number" min="1"></div><div><label>Height (px)</label><input id="h" type="number" min="1"></div></div>
+          <label class="check"><input id="lock" type="checkbox" checked> Lock aspect ratio</label>
+        </div></div>
+      </section>
+      <section class="accordion-item" data-section="Crop">
+        <button class="accordion-trigger" type="button" aria-expanded="false"><span>Crop</span><i class="chevron" aria-hidden="true"></i></button>
+        <div class="accordion-content"><div class="accordion-content-inner">
+          <label>Aspect ratio</label><select id="aspect"><option value="free">Free</option><option value="1">1:1 Square</option><option value="1.3333">4:3</option><option value="1.7778">16:9</option><option value=".6667">2:3</option></select>
+          <p class="stats">Tip: drag on the preview to create a crop rectangle. The crop is applied when you click “Apply Crop”.</p>
+          <button class="btn" id="applyCrop" style="width:100%;min-height:44px">Apply Crop</button>
+        </div></div>
+      </section>
+      <section class="accordion-item" data-section="Filters">
+        <button class="accordion-trigger" type="button" aria-expanded="false"><span>Filters</span><i class="chevron" aria-hidden="true"></i></button>
+        <div class="accordion-content"><div class="accordion-content-inner">
+          <div class="filter-grid">
+            <button class="btn active" data-filter="none">Original</button><button class="btn" data-filter="grayscale">B&amp;W</button>
+            <button class="btn" data-filter="sepia">Sepia</button><button class="btn" data-filter="warm">Warm</button>
+            <button class="btn" data-filter="cool">Cool</button><button class="btn" data-filter="vivid">Vivid</button>
+          </div>
+          <label>Brightness <span id="bv">100%</span></label><input id="brightness" type="range" min="50" max="150" value="100">
+          <label>Contrast <span id="cv">100%</span></label><input id="contrast" type="range" min="50" max="150" value="100">
+          <label>Saturation <span id="sv">100%</span></label><input id="saturation" type="range" min="0" max="200" value="100">
+        </div></div>
+      </section>
+      <section class="accordion-item" data-section="Compress">
+        <button class="accordion-trigger" type="button" aria-expanded="false"><span>Compress</span><i class="chevron" aria-hidden="true"></i></button>
+        <div class="accordion-content"><div class="accordion-content-inner">
+          <label>Format</label><select id="format"><option value="image/jpeg">JPG</option><option value="image/webp">WEBP</option><option value="image/png">PNG</option></select>
+          <label>Quality <span id="qv">82%</span></label><input id="quality" type="range" min="10" max="100" value="82">
+          <p class="stats" id="estimate">Estimated output size will appear here.</p>
+        </div></div>
+      </section>
     </div>
-    <div class="section"><h3>Crop</h3>
-      <label>Aspect ratio</label><select id="aspect"><option value="free">Free</option><option value="1">1:1 Square</option><option value="1.3333">4:3</option><option value="1.7778">16:9</option><option value=".6667">2:3</option></select>
-      <p class="stats">Tip: drag on the preview to create a crop rectangle. The crop is applied when you click “Apply Crop”.</p>
-      <button class="btn" id="applyCrop" style="width:100%">Apply Crop</button>
-    </div>
-    <div class="section"><h3>Filters</h3>
-      <div class="filter-grid">
-        <button class="btn active" data-filter="none">Original</button><button class="btn" data-filter="grayscale">B&W</button>
-        <button class="btn" data-filter="sepia">Sepia</button><button class="btn" data-filter="warm">Warm</button>
-        <button class="btn" data-filter="cool">Cool</button><button class="btn" data-filter="vivid">Vivid</button>
-      </div>
-      <label>Brightness <span id="bv">100%</span></label><input id="brightness" type="range" min="50" max="150" value="100">
-      <label>Contrast <span id="cv">100%</span></label><input id="contrast" type="range" min="50" max="150" value="100">
-      <label>Saturation <span id="sv">100%</span></label><input id="saturation" type="range" min="0" max="200" value="100">
-    </div>
-    <div class="section"><h3>Export & compress</h3>
-      <label>Format</label><select id="format"><option value="image/jpeg">JPG</option><option value="image/webp">WEBP</option><option value="image/png">PNG</option></select>
-      <label>Quality <span id="qv">82%</span></label><input id="quality" type="range" min="10" max="100" value="82">
-      <p class="stats" id="estimate">Estimated output size will appear here.</p>
-      <button class="btn primary" id="download" style="width:100%;margin-top:8px">Download Image</button>
-    </div>
+    <div class="download-area"><button class="btn primary" id="download">Download Image</button></div>
   </aside>
 </div>
 </main>
-<footer>PixelLite processes images locally in your browser. No image is sent to a server.<br><span class="version">PixelLite v3.4</span></footer>
+<footer>PixelLite processes images locally in your browser. No image is sent to a server.<br><span class="version">PixelLite v3.5.5 UI</span></footer>
 
 <script>
 const $=id=>document.getElementById(id);
@@ -246,8 +282,50 @@ function resetAll(full=true){
  document.querySelectorAll('[data-filter]').forEach(b=>b.classList.toggle('active',b.dataset.filter==='none'));
  if(full){draw();scheduleEstimate();}
 }
+document.querySelectorAll('.accordion-trigger').forEach(trigger=>trigger.addEventListener('click',()=>{
+  const item=trigger.parentElement;
+  const isOpen=item.classList.contains('open');
+  document.querySelectorAll('.accordion-item.open').forEach(openItem=>{
+    if(openItem!==item){
+      openItem.classList.remove('open');
+      openItem.querySelector('.accordion-trigger').setAttribute('aria-expanded','false');
+    }
+  });
+  item.classList.toggle('open',!isOpen);
+  trigger.setAttribute('aria-expanded',String(!isOpen));
+}));
+
+document.querySelectorAll('[data-open-section]').forEach(card=>card.addEventListener('click',()=>{
+  const target=card.dataset.openSection;
+  const item=document.querySelector('.accordion-item[data-section="'+target+'"]');
+  if(!item)return;
+  document.querySelectorAll('.accordion-item.open').forEach(openItem=>{
+    if(openItem!==item){
+      openItem.classList.remove('open');
+      openItem.querySelector('.accordion-trigger').setAttribute('aria-expanded','false');
+    }
+  });
+  item.classList.add('open');
+  item.querySelector('.accordion-trigger').setAttribute('aria-expanded','true');
+  const targetItem=item;
+  if(targetItem){
+    requestAnimationFrame(()=>{
+      targetItem.scrollIntoView({behavior:'smooth',block:'start',inline:'nearest'});
+      setTimeout(()=>{
+        const rect=targetItem.getBoundingClientRect();
+        if(rect.top < 78) window.scrollBy({top:rect.top-78,behavior:'smooth'});
+      },350);
+    });
+  }
+}));
+
 $('reset').onclick=()=>{if(original){image=original;resetAll();}};
-$('clear').onclick=()=>{editor.hidden=true;drop.hidden=false;file.value='';original=null;image=null;canvas.style.position='absolute';canvas.style.visibility='hidden';cropOverlay.style.display='none';$('empty').hidden=false};
+$('clear').onclick=()=>{
+  editor.hidden=true;drop.hidden=false;file.value='';original=null;image=null;crop=null;dragging=false;
+  canvas.style.position='absolute';canvas.style.visibility='hidden';cropOverlay.style.display='none';$('empty').hidden=false;
+  $('estimate').textContent='No image selected';$('estimate').classList.add('warning');
+  $('qv').textContent=$('quality').value+'%';
+};
 
 ['w','h'].forEach(id=>$(id).addEventListener('input',e=>{
  if(!image)return;
@@ -333,15 +411,26 @@ canvas.addEventListener('pointercancel',stopDragging);
 function scheduleEstimate(){
  estimateRequest++;
  clearTimeout(estimateTimer);
+ if(!image){
+   $('estimate').textContent='No image selected';
+   $('estimate').classList.add('warning');
+   return;
+ }
  $('estimate').textContent='Calculating output size…';
+ $('estimate').classList.remove('warning');
  estimateTimer=setTimeout(updateEstimate,120);
 }
 let estimateTimer=0,estimateRequest=0;
 function updateEstimate(){
- if(!image)return;
+ if(!image){
+   $('estimate').textContent='No image selected';
+   $('estimate').classList.add('warning');
+   return;
+ }
  const type=$('format').value, q=+$('quality').value/100, request=++estimateRequest;
  canvas.toBlob(blob=>{
    if(!blob||request!==estimateRequest)return;
+   $('estimate').classList.remove('warning');
    $('estimate').textContent='Estimated output: '+formatBytes(blob.size);
  },type,type==='image/png'?undefined:q);
 }
@@ -378,6 +467,7 @@ $('quality').oninput=()=>{
 };
 
 $('download').onclick=()=>{
+ if(!image){$('estimate').textContent='No image selected';$('estimate').classList.add('warning');return;}
  const type=$('format').value, q=+$('quality').value/100;
  canvas.toBlob(blob=>{
    if(!blob)return;
