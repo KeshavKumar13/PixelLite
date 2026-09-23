@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="description" content="Convert PNG, JPG and WEBP images online in your browser with PixelLite. Images are processed locally without uploading them to a server.">
+<link rel="canonical" href="https://pixellite.in/convert.html">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://pixellite.in/convert.html">
+<meta property="og:title" content="Image Converter | PixelLite">
+<meta property="og:description" content="Convert PNG, JPG and WEBP images directly in your browser.">
+<meta property="og:site_name" content="PixelLite">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Image Converter | PixelLite">
+<meta name="twitter:description" content="Convert PNG, JPG and WEBP images directly in your browser.">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KYXXS5396T"></script>
+<script>
+window.dataLayer=window.dataLayer||[];
+function gtag(){dataLayer.push(arguments);}
+gtag('js',new Date());gtag('config','G-KYXXS5396T');
+</script>
+<title>Image Converter | PixelLite</title>
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="stylesheet" href="css/style.css?v=11">
+</head>
+<body>
+<header>
+<a class="brand" href="index.html" aria-label="PixelLite home">
+  <div class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+  <div class="logo">Pixel<span>Lite</span></div>
+</a>
+<nav class="site-nav" aria-label="Main navigation">
+<a href="index.html">Home</a>
+<a href="editor.html">Editor</a>
+<a href="convert.html">Convert</a>
+<a href="about.html">About</a>
+<a href="contact.html">Contact</a>
+<a href="privacy.html">Privacy</a>
+</nav>
+</header>
+
+<main class="converter-page">
+  <section class="converter-hero">
+    <h1>Image Converter</h1>
+    <p>Convert PNG, JPG and WEBP images directly in your browser.</p>
+  </section>
+
+  <section class="converter-card">
+    <div class="converter-drop" id="converterDrop">
+      <strong>Drop an image here</strong>
+      <p>or choose an image from your device</p>
+      <div class="converter-actions">
+        <button class="btn primary" id="chooseBtn" type="button">Choose Image</button>
+      </div>
+      <input id="fileInput" type="file" accept="image/png,image/jpeg,image/webp" hidden>
+    </div>
+
+    <div class="converter-workspace" id="workspace">
+      <div class="converter-preview">
+        <img id="preview" alt="Selected image preview">
+      </div>
+      <div class="converter-controls">
+        <h2>Conversion</h2>
+        <div class="converter-file" id="fileInfo"></div>
+
+        <label for="format">Convert to</label>
+        <select id="format">
+          <option value="image/jpeg">JPG</option>
+          <option value="image/png">PNG</option>
+          <option value="image/webp">WEBP</option>
+        </select>
+
+        <div id="qualityWrap">
+          <label for="quality">Quality: <span id="qualityValue">90%</span></label>
+          <input id="quality" type="range" min="1" max="100" value="90">
+          <div class="converter-estimate" id="estimatedSize">Estimated size: —</div>
+        </div>
+
+        <div class="converter-result" id="result">Choose a target format to prepare the conversion.</div>
+        <button class="btn primary converter-download" id="downloadBtn" type="button">Convert &amp; Download</button>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>Your images stay on your device and are processed locally in your browser.<div class="page-footer-links">
+<a href="index.html">Home</a><a href="editor.html">Editor</a><a href="convert.html">Convert</a><a href="about.html">About</a><a href="contact.html">Contact</a><a href="privacy.html">Privacy</a>
+</div>
+<br><span class="version">PixelLite v3.6 Phase 11</span>
+</footer>
+
+<script src="js/converter.js?v=11"></script>
+</body>
+</html>

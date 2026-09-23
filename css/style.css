@@ -1,7 +1,7 @@
 :root{--bg:#f5f7fb;--card:#fff;--text:#172033;--muted:#667085;--line:#dfe4ec;--accent:#4f46e5;--accent2:#7c3aed}
 *{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--text)}
 header{height:70px;background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 28px;position:sticky;top:0;z-index:5}
-.brand{display:flex;align-items:center;gap:9px;min-width:0}.logo{font-size:21px;font-weight:800;letter-spacing:-.5px}.logo span{color:var(--accent)}
+.brand{display:flex;align-items:center;gap:9px;min-width:0;color:var(--text);text-decoration:none}.brand:visited,.brand:hover,.brand:active{color:var(--text);text-decoration:none}.logo{font-size:21px;font-weight:800;letter-spacing:-.5px;color:var(--text)}.logo span{color:var(--accent)}
 .brand-mark{width:30px;height:30px;border-radius:9px;background:linear-gradient(135deg,#4f46e5,#7c3aed);display:grid;grid-template-columns:repeat(2,8px);grid-template-rows:repeat(2,8px);gap:3px;place-content:center;box-shadow:0 5px 14px rgba(79,70,229,.22);flex:0 0 auto}
 .brand-mark i{display:block;background:#fff;border-radius:2px}.brand-mark i:nth-child(1){opacity:.95}.brand-mark i:nth-child(2){opacity:.72}.brand-mark i:nth-child(3){opacity:.72}.brand-mark i:nth-child(4){opacity:.95}
 header small{color:var(--muted)}
@@ -158,3 +158,713 @@ footer .version{display:inline-block;margin-top:5px;font-size:10px;color:#98a2b3
 .page-footer-links a{color:inherit;text-decoration:none;opacity:.8}
 .page-footer-links a:hover{opacity:1;text-decoration:underline}
 @media(max-width:700px){.site-nav{gap:11px}.site-nav a{font-size:13px}.info-page{padding:24px 14px 40px}.info-card{padding:22px 18px;border-radius:14px}}
+
+
+/* PixelLite v3.6 Phase 3 image converter */
+.converter-page{max-width:980px;margin:0 auto;padding:34px 18px 50px}
+.converter-hero{text-align:center;margin:10px 0 24px}
+.converter-hero h1{font-size:clamp(28px,5vw,40px);margin:0 0 8px;letter-spacing:-.8px}
+.converter-hero p{color:var(--muted);margin:0;line-height:1.5}
+.converter-card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px;box-shadow:0 8px 28px rgba(16,24,40,.05)}
+.converter-drop{border:2px dashed #c8cfdb;border-radius:15px;padding:30px 18px;text-align:center;cursor:pointer;background:#fff;transition:.2s}
+.converter-drop:hover,.converter-drop.drag{border-color:var(--accent);background:#fafaff}
+.converter-drop strong{display:block;font-size:18px;margin-bottom:7px}
+.converter-drop p{color:var(--muted);font-size:13px;margin:0 0 16px}
+.converter-actions{display:flex;justify-content:center}
+.converter-actions .btn{min-height:44px}
+.converter-workspace{display:none;grid-template-columns:minmax(0,1fr) 300px;gap:18px;margin-top:18px}
+.converter-preview{min-height:380px;background:#111827;border-radius:15px;padding:20px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.converter-preview img{display:block;max-width:100%;max-height:520px;width:auto;height:auto;object-fit:contain;border-radius:8px}
+.converter-controls{border:1px solid var(--line);border-radius:15px;padding:16px;background:#fff}
+.converter-controls h2{font-size:16px;margin:0 0 12px}
+.converter-controls label{display:block;font-size:12px;font-weight:600;color:#475467;margin:12px 0 6px}
+.converter-controls select,.converter-controls input[type=range]{width:100%}
+.converter-file{font-size:12px;color:var(--muted);line-height:1.5;word-break:break-word}
+.converter-result{font-size:12px;color:var(--muted);line-height:1.6;margin:12px 0}
+.converter-download{width:100%;min-height:48px}
+.converter-note{margin:18px auto 0;max-width:760px;text-align:center;font-size:12px;color:var(--muted);line-height:1.6}
+@media(max-width:760px){
+  .converter-workspace{grid-template-columns:1fr}
+  .converter-preview{min-height:300px}
+  .converter-card{padding:15px}
+  .converter-drop{padding:26px 14px}
+}
+
+/* PixelLite v3.6 Phase 5: keep editor hidden until an image is loaded */
+.editor[hidden] { display: none !important; }
+
+/* PixelLite v3.6 Phase 5: aligned editor upload state */
+.editor-upload-card{max-width:980px;margin:0 auto 22px}
+.editor-features{
+  max-width:980px;
+  margin:0 auto 24px;
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:12px;
+}
+.editor-feature{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:15px 12px;
+  text-align:center;
+}
+.editor-feature-icon{
+  width:38px;height:38px;
+  margin:0 auto 9px;
+  border-radius:10px;
+  display:grid;place-items:center;
+  background:#f0edff;
+  color:var(--accent);
+  font-size:20px;
+  font-weight:800;
+}
+.editor-feature strong{display:block;font-size:14px;margin-bottom:4px}
+.editor-feature span{display:block;color:var(--muted);font-size:11px;line-height:1.35}
+.editor[hidden]{display:none!important}
+.tool-card,.tool-card:hover,.tool-card:visited,.tool-card:active,
+.tool-card .tool-link,.tool-card .tool-link:hover,
+.tool-card .tool-link:visited,.tool-card .tool-link:active{
+  text-decoration:none!important;
+}
+@media(max-width:700px){
+  .editor-features{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+}
+
+/* PixelLite v3.6 Phase 6: Home tool cards are clean clickable cards */
+.tool-grid .tool-card,
+.tool-grid .tool-card:link,
+.tool-grid .tool-card:visited,
+.tool-grid .tool-card:hover,
+.tool-grid .tool-card:active,
+.tool-grid .tool-card h2,
+.tool-grid .tool-card p,
+.tool-grid .tool-card .tool-link {
+  text-decoration: none !important;
+  text-decoration-line: none !important;
+}
+.tool-grid .tool-card {
+  color: var(--text) !important;
+}
+.tool-grid .tool-card .tool-link {
+  color: var(--accent) !important;
+}
+
+/* Loaded editor tool tabs: visible only with the editor workspace */
+.editor-feature-tabs{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:8px;
+  margin-bottom:12px;
+}
+.editor-feature{
+  border:1px solid var(--line);
+  background:#fff;
+  border-radius:12px;
+  padding:10px 7px;
+  cursor:pointer;
+  color:var(--text);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:6px;
+  min-height:78px;
+  transition:.18s ease;
+}
+.editor-feature:hover{
+  border-color:#c9c6ff;
+  background:#fafaff;
+}
+.editor-feature.active{
+  border-color:#c9c6ff;
+  background:#f0edff;
+  color:var(--accent);
+}
+.editor-feature-icon{
+  width:30px;height:30px;
+  display:grid;place-items:center;
+  font-size:21px;
+  font-weight:800;
+}
+.editor-feature span:last-child{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:2px;
+}
+.editor-feature strong{font-size:12px;line-height:1.1}
+.editor-feature small{font-size:9px;color:var(--muted);line-height:1.1}
+.editor-feature.active small{color:#635bdb}
+@media(max-width:700px){
+  .editor-feature-tabs{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+
+/* PixelLite v3.6 Phase 6: stable editor controls */
+a.tool-card,
+a.tool-card:link,
+a.tool-card:visited,
+a.tool-card:hover,
+a.tool-card:active{
+  text-decoration:none!important;
+  -webkit-text-decoration-line:none!important;
+  text-decoration-line:none!important;
+  color:inherit!important;
+}
+.tool-grid .tool-card h2,
+.tool-grid .tool-card p,
+.tool-grid .tool-card .tool-link{
+  text-decoration:none!important;
+  -webkit-text-decoration-line:none!important;
+}
+.editor-upload-card{max-width:980px}
+.editor-upload-card .converter-drop{min-height:174px;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.panel{
+  position:sticky;
+  top:82px;
+  height:calc(100vh - 100px);
+  max-height:calc(100vh - 100px);
+  overflow:hidden!important;
+  display:flex!important;
+  flex-direction:column;
+  padding:12px!important;
+  background:var(--card)!important;
+  border:1px solid var(--line)!important;
+  border-radius:16px!important;
+}
+.panel .editor-feature-tabs{flex:0 0 auto}
+.panel .accordion{
+  flex:1 1 auto;
+  min-height:0;
+  overflow-y:auto;
+  overflow-x:hidden;
+  scrollbar-gutter:stable;
+  padding-right:3px;
+}
+.panel .download-area{
+  flex:0 0 auto;
+  position:sticky;
+  bottom:0;
+  background:var(--card);
+  padding-top:10px;
+  border-top:1px solid var(--line);
+  z-index:2;
+}
+#applyChangesBottom{width:100%;min-height:44px;margin-bottom:8px}
+#download{width:100%;min-height:44px}
+.editor-feature-tabs{
+  display:grid!important;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:7px;
+  margin-bottom:10px;
+}
+.editor-feature{
+  min-height:70px;
+  padding:8px 5px;
+}
+@media(max-width:900px){
+  .panel{
+    position:relative;
+    top:auto;
+    height:auto;
+    max-height:none;
+    overflow:visible!important;
+  }
+  .panel .accordion{max-height:520px}
+}
+@media(max-width:700px){
+  .editor-feature-tabs{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+
+/* PixelLite v3.6 Phase 7: absolute removal of Home card underlines */
+.tool-grid a.tool-card,
+.tool-grid a.tool-card *,
+.tool-grid a.tool-card h2,
+.tool-grid a.tool-card p,
+.tool-grid a.tool-card span,
+.tool-grid a.tool-card:link,
+.tool-grid a.tool-card:visited,
+.tool-grid a.tool-card:hover,
+.tool-grid a.tool-card:active,
+.tool-grid a.tool-card:focus{
+  text-decoration:none!important;
+  -webkit-text-decoration:none!important;
+  -webkit-text-decoration-line:none!important;
+  text-decoration-line:none!important;
+  text-decoration-color:transparent!important;
+}
+.tool-grid a.tool-card .tool-link{
+  border-bottom:0!important;
+  box-shadow:none!important;
+}
+
+/* PixelLite v3.6 Phase 7: accordion sections should expand naturally.
+   The accordion itself is the only scrolling region. */
+.panel .accordion{
+  min-height:0;
+  overflow-y:auto;
+  overflow-x:hidden;
+  align-items:stretch;
+}
+.accordion-content{
+  display:block;
+  max-height:0;
+  overflow:hidden;
+  transition:max-height .25s ease;
+}
+.accordion-item.open .accordion-content{
+  max-height:900px;
+}
+.accordion-content-inner{
+  min-height:0;
+  overflow:visible;
+  padding:0 14px;
+}
+.accordion-item.open .accordion-content-inner{
+  padding-bottom:15px;
+}
+
+.panel .editor-feature-tabs{
+  position:relative;
+  z-index:3;
+  flex:0 0 auto;
+  background:var(--card);
+}
+.panel .download-area{
+  flex:0 0 auto;
+}
+
+/* PixelLite v3.6 Phase 8: Home cards are div-based clickable cards */
+.tool-grid .tool-card{
+  text-decoration:none!important;
+  -webkit-text-decoration:none!important;
+  text-decoration-line:none!important;
+  border-bottom:0!important;
+  cursor:pointer;
+}
+.tool-grid .tool-card *{
+  text-decoration:none!important;
+  -webkit-text-decoration:none!important;
+  text-decoration-line:none!important;
+  border-bottom:0!important;
+}
+.tool-grid .tool-card:focus-visible{
+  outline:2px solid var(--accent);
+  outline-offset:3px;
+}
+
+/* PixelLite v3.6 Phase 8: accordion content must never be compressed by grid rows */
+.panel .accordion{
+  overflow-y:auto!important;
+  min-height:0!important;
+}
+.panel .accordion-item{
+  flex:0 0 auto;
+}
+.panel .accordion-content{
+  display:none!important;
+  max-height:none!important;
+  overflow:visible!important;
+  grid-template-rows:none!important;
+}
+.panel .accordion-item.open .accordion-content{
+  display:block!important;
+}
+.panel .accordion-content-inner,
+.panel .accordion-item.open .accordion-content-inner{
+  display:block!important;
+  min-height:auto!important;
+  height:auto!important;
+  max-height:none!important;
+  overflow:visible!important;
+  padding:0 14px 15px!important;
+}
+.panel .accordion-content-inner select,
+.panel .accordion-content-inner input,
+.panel .accordion-content-inner .filter-grid,
+.panel .accordion-content-inner .stats{
+  flex-shrink:0;
+}
+
+
+/* PixelLite v3.6 Phase 9: single-panel editor controls */
+a.tool-card,
+a.tool-card:link,
+a.tool-card:visited,
+a.tool-card:hover,
+a.tool-card:active,
+.tool-grid .tool-card h2,
+.tool-grid .tool-card p,
+.tool-grid .tool-card .tool-link{
+  text-decoration:none!important;
+  text-decoration-line:none!important;
+  -webkit-text-decoration-line:none!important;
+  border-bottom:0!important;
+}
+
+/* Show only the selected editor setting. No sidebar scrolling. */
+.panel .accordion{
+  flex:1 1 auto!important;
+  min-height:0!important;
+  overflow:visible!important;
+  padding-right:0!important;
+}
+.panel .accordion-item{
+  display:none!important;
+  flex:0 0 auto!important;
+  border:0!important;
+}
+.panel .accordion-item.open{
+  display:block!important;
+}
+.panel .accordion-trigger{
+  display:none!important;
+}
+.panel .accordion-content,
+.panel .accordion-item.open .accordion-content{
+  display:block!important;
+  max-height:none!important;
+  overflow:visible!important;
+  grid-template-rows:none!important;
+}
+.panel .accordion-content-inner,
+.panel .accordion-item.open .accordion-content-inner{
+  display:block!important;
+  min-height:0!important;
+  height:auto!important;
+  max-height:none!important;
+  overflow:visible!important;
+  padding:0 2px 10px!important;
+}
+@media(max-width:900px){
+  .panel .accordion{max-height:none!important;overflow:visible!important}
+}
+
+
+/* PixelLite v3.6 Phase 9: live converter quality estimate */
+.converter-estimate{
+  margin-top:7px;
+  font-size:12px;
+  color:var(--muted);
+  line-height:1.4;
+}
+
+
+/* PixelLite v3.6 Phase 10: align Editor and Converter upload states */
+.editor-upload-card,
+.converter-page .converter-card{
+  width:100%;
+  max-width:980px;
+  margin-left:auto;
+  margin-right:auto;
+}
+.editor-upload-card .converter-drop,
+.converter-page .converter-card > .converter-drop{
+  min-height:174px!important;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+}
+
+/* Home cards are not anchors, so remove all link-like decoration and borders. */
+.tool-grid .tool-card,
+.tool-grid .tool-card *{
+  text-decoration:none!important;
+  text-decoration-line:none!important;
+  -webkit-text-decoration:none!important;
+  -webkit-text-decoration-line:none!important;
+  border-bottom:0!important;
+}
+.tool-grid .tool-card .tool-link{
+  display:inline-block;
+  color:var(--accent);
+  font-weight:700;
+  text-decoration:none!important;
+  border:0!important;
+  box-shadow:none!important;
+}
+
+/* PixelLite v3.6 Phase 12: contained filter controls */
+.panel .accordion{
+  flex:1 1 auto!important;
+  min-height:0!important;
+  overflow:visible!important;
+}
+.panel .accordion-item.open{
+  overflow:visible!important;
+}
+.panel .accordion-content-inner{
+  box-sizing:border-box!important;
+  width:100%!important;
+  overflow:visible!important;
+}
+.advanced-filters{
+  display:grid!important;
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  gap:7px 10px!important;
+  width:100%!important;
+  box-sizing:border-box!important;
+}
+.advanced-filters .filter-control{
+  min-width:0!important;
+  box-sizing:border-box!important;
+  overflow:hidden!important;
+}
+.advanced-filters label{
+  margin:4px 0 1px!important;
+  font-size:11px!important;
+  line-height:1.2!important;
+  white-space:nowrap!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+}
+.advanced-filters label span{float:right}
+.advanced-filters input[type=range]{
+  display:block!important;
+  width:100%!important;
+  max-width:100%!important;
+  height:24px!important;
+  margin:0!important;
+}
+@media(max-width:700px){
+  .advanced-filters{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:7px 8px!important}
+  .advanced-filters label{font-size:10px!important}
+}
+
+/* PixelLite v3.6 Phase 13: compact editor controls and advanced filters */
+.panel .accordion{
+  overflow:visible!important;
+  overflow-y:visible!important;
+  padding-right:0!important;
+}
+.panel .accordion-item .accordion-trigger{display:none!important}
+.panel .accordion-item{display:none!important;border:0!important}
+.panel .accordion-item.open{display:block!important}
+.panel .accordion-content{display:block!important;max-height:none!important;overflow:visible!important}
+.panel .accordion-content-inner{padding:0 4px 8px!important;overflow:visible!important}
+.editor-feature-tabs{
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  gap:7px;
+}
+.editor-feature{min-height:62px!important}
+.filter-slider-list{
+  display:grid!important;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:8px 12px;
+}
+.filter-slider-list .filter-control{
+  min-width:0;
+  padding:5px 8px;
+  border:1px solid var(--line);
+  border-radius:10px;
+  background:#fff;
+}
+.filter-slider-list .filter-control label{
+  display:flex;
+  justify-content:space-between;
+  gap:8px;
+  margin-bottom:2px;
+  font-size:11px;
+  white-space:nowrap;
+}
+.filter-slider-list .filter-control input[type=range]{width:100%;margin:0;height:24px}
+.filter-note{margin-top:8px}
+@media(max-width:700px){
+  .editor-feature-tabs{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+  .filter-slider-list{grid-template-columns:1fr}
+  .panel .accordion-content-inner{padding-left:0!important;padding-right:0!important}
+}
+
+/* PixelLite v3.6 Phase 14: compact all filter sliders and remove batch editing */
+.panel .editor-feature-tabs{
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+}
+.filter-slider-list{
+  display:grid!important;
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  grid-auto-rows:minmax(0,1fr)!important;
+  gap:6px 8px!important;
+  width:100%!important;
+  box-sizing:border-box!important;
+}
+.filter-slider-list .filter-control{
+  min-width:0!important;
+  height:44px!important;
+  padding:3px 7px!important;
+  box-sizing:border-box!important;
+  overflow:visible!important;
+  display:flex!important;
+  flex-direction:column!important;
+  justify-content:center!important;
+}
+.filter-slider-list .filter-control label{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:space-between!important;
+  gap:5px!important;
+  margin:0 0 1px!important;
+  font-size:10px!important;
+  line-height:1.1!important;
+  white-space:nowrap!important;
+}
+.filter-slider-list .filter-control input[type=range]{
+  width:100%!important;
+  height:18px!important;
+  min-height:18px!important;
+  margin:0!important;
+}
+.filter-note{display:none!important}
+@media(max-width:700px){
+  .filter-slider-list{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:5px 7px!important}
+  .filter-slider-list .filter-control{height:43px!important;padding:3px 6px!important}
+  .filter-slider-list .filter-control label{font-size:9px!important}
+}
+
+/* PixelLite v3.6 Phase 15: mobile controls must not be covered by Apply/Download */
+@media(max-width:900px){
+  .panel .download-area{
+    position:relative!important;
+    bottom:auto!important;
+    margin-top:10px!important;
+    padding-top:10px!important;
+  }
+}
+
+/* Keep all filter rows fully contained inside their panel */
+.filter-slider-list{
+  box-sizing:border-box!important;
+  overflow:visible!important;
+}
+.filter-slider-list .filter-control{
+  box-sizing:border-box!important;
+  min-width:0!important;
+  overflow:hidden!important;
+}
+@media(max-width:700px){
+  .filter-slider-list .filter-control{
+    height:42px!important;
+  }
+}
+
+
+/* PixelLite v3.6 Phase 16: final editor panel layout
+   The page scrolls normally. The editor panel never becomes a nested scrolling box,
+   and its action buttons never cover the filter controls. */
+.panel{
+  position:relative!important;
+  top:auto!important;
+  height:auto!important;
+  max-height:none!important;
+  overflow:visible!important;
+  align-self:start!important;
+}
+.panel .editor-feature-tabs{
+  position:relative!important;
+  flex:none!important;
+}
+.panel .accordion{
+  display:block!important;
+  height:auto!important;
+  max-height:none!important;
+  min-height:0!important;
+  overflow:visible!important;
+  padding:0!important;
+}
+.panel .accordion-item.open{
+  display:block!important;
+  height:auto!important;
+  max-height:none!important;
+  overflow:visible!important;
+}
+.panel .accordion-item:not(.open){
+  display:none!important;
+}
+.panel .accordion-content,
+.panel .accordion-item.open .accordion-content{
+  display:block!important;
+  height:auto!important;
+  max-height:none!important;
+  overflow:visible!important;
+}
+.panel .accordion-content-inner,
+.panel .accordion-item.open .accordion-content-inner{
+  display:block!important;
+  height:auto!important;
+  min-height:0!important;
+  max-height:none!important;
+  overflow:visible!important;
+  padding:0 2px 10px!important;
+}
+.filter-slider-list{
+  display:grid!important;
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  grid-auto-rows:auto!important;
+  gap:7px 8px!important;
+  width:100%!important;
+  height:auto!important;
+  overflow:visible!important;
+}
+.filter-slider-list .filter-control{
+  height:auto!important;
+  min-height:44px!important;
+  padding:4px 7px!important;
+  overflow:hidden!important;
+}
+.filter-slider-list .filter-control label{
+  margin:0 0 2px!important;
+  line-height:1.15!important;
+}
+.filter-slider-list .filter-control input[type=range]{
+  height:20px!important;
+  min-height:20px!important;
+}
+.panel .download-area{
+  position:relative!important;
+  top:auto!important;
+  bottom:auto!important;
+  margin-top:2px!important;
+  padding:10px 2px 2px!important;
+  background:var(--card)!important;
+  border-top:1px solid var(--line)!important;
+  z-index:auto!important;
+}
+@media(max-width:900px){
+  .panel{
+    position:relative!important;
+    top:auto!important;
+    height:auto!important;
+    max-height:none!important;
+    overflow:visible!important;
+    align-self:start!important;
+  }
+  .panel .accordion{max-height:none!important;overflow:visible!important}
+  .panel .download-area{position:relative!important;bottom:auto!important}
+}
+@media(max-width:700px){
+  .filter-slider-list{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    gap:7px 7px!important;
+  }
+  .filter-slider-list .filter-control{
+    min-height:44px!important;
+    padding:4px 6px!important;
+  }
+}
+
+
+/* PixelLite v3.6 Phase 17: identical Editor and Converter initial upload layout */
+.editor-upload-card{
+  width:100%!important;
+  max-width:none!important;
+  margin:0!important;
+  padding:22px!important;
+  box-sizing:border-box!important;
+}
+.editor-upload-card .converter-drop{
+  min-height:174px!important;
+  box-sizing:border-box!important;
+}
+@media(max-width:760px){
+  .editor-upload-card{padding:15px!important}
+}
