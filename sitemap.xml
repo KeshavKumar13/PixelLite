@@ -1,18 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://pixellite.in/</loc></url>
-  <url><loc>https://pixellite.in/editor.html</loc></url>
-  <url><loc>https://pixellite.in/convert.html</loc></url>
-  <url><loc>https://pixellite.in/tools.html</loc></url>
-  <url><loc>https://pixellite.in/about.html</loc></url>
-  <url><loc>https://pixellite.in/contact.html</loc></url>
-  <url><loc>https://pixellite.in/privacy.html</loc></url>
-  <url><loc>https://pixellite.in/guide.html</loc></url>
-  <url><loc>https://pixellite.in/faq.html</loc></url>
-  <url><loc>https://pixellite.in/resize-image.html</loc></url>
-  <url><loc>https://pixellite.in/compress-image.html</loc></url>
-  <url><loc>https://pixellite.in/crop-image.html</loc></url>
-  <url><loc>https://pixellite.in/jpg-to-webp.html</loc></url>
-  <url><loc>https://pixellite.in/png-to-jpg.html</loc></url>
-  <url><loc>https://pixellite.in/webp-to-jpg.html</loc></url>
+  <url><loc>https://pixellite.in/index.html</loc><changefreq>monthly</changefreq></url>
+  <url><loc>https://pixellite.in/editor.html</loc><changefreq>monthly</changefreq></url>
+  <url><loc>https://pixellite.in/convert.html</loc><changefreq>monthly</changefreq></url>
+  <url><loc>https://pixellite.in/about.html</loc><changefreq>monthly</changefreq></url>
+  <url><loc>https://pixellite.in/contact.html</loc><changefreq>monthly</changefreq></url>
+  <url><loc>https://pixellite.in/privacy.html</loc><changefreq>monthly</changefreq></url>
+  <url><loc>https://pixellite.in/guide.html</loc><changefreq>monthly</changefreq></url>
+  <url><loc>https://pixellite.in/faq.html</loc><changefreq>monthly</changefreq></url>
+  <url><loc>https://pixellite.in/tools.html</loc><changefreq>monthly</changefreq></url>
+  <url><loc>https://pixellite.in/resize-image.html</loc><changefreq>monthly</changefreq></url>
+  <url><loc>https://pixellite.in/compress-image.html</loc><changefreq>monthly</changefreq></url>
+  <url><loc>https://pixellite.in/crop-image.html</loc><changefreq>monthly</changefreq></url>
+  <url><loc>https://pixellite.in/jpg-to-webp.html</loc><changefreq>monthly</changefreq></url>
+  <url><loc>https://pixellite.in/png-to-jpg.html</loc><changefreq>monthly</changefreq></url>
+  <url><loc>https://pixellite.in/webp-to-jpg.html</loc><changefreq>monthly</changefreq></url>
+  <url><loc>https://pixellite.in/jpg-to-png.html</loc><changefreq>monthly</changefreq></url>
+  <url><loc>https://pixellite.in/webp-to-png.html</loc><changefreq>monthly</changefreq></url>
+  <url><loc>https://pixellite.in/png-to-webp.html</loc><changefreq>monthly</changefreq></url>
 </urlset>
