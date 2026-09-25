@@ -16,9 +16,9 @@ gtag('consent','default',{
 'ad_storage':'denied','analytics_storage':'denied','ad_user_data':'denied','ad_personalization':'denied','wait_for_update':500
 });
 </script>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-QHZR2VLP4X"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=the active analytics service"></script>
 <script>gtag('js',new Date());gtag('config','G-QHZR2VLP4X');</script>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1741589992062370" crossorigin="anonymous"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-the advertising service" crossorigin="anonymous"></script>
 <style>
 :root{--bg:#f5f7fb;--card:#fff;--text:#172033;--muted:#667085;--line:#dfe4ec;--accent:#4f46e5}
 *{box-sizing:border-box}
@@ -60,30 +60,12 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:24px 18px;bor
  .card{padding:24px 18px}
  .info-grid{grid-template-columns:1fr}
 }
-</style>
-<style id="pixellite-shared-nav">
-.pl-header{height:70px!important;min-height:70px!important;background:#fff!important;border-bottom:1px solid #dfe4ec!important;display:flex!important;align-items:center!important;justify-content:space-between!important;padding:0 28px!important;position:sticky!important;top:0!important;z-index:9999!important;box-sizing:border-box!important;width:100%!important}
-.pl-brand{font-size:21px!important;font-weight:800!important;letter-spacing:-.5px!important;color:#172033!important;text-decoration:none!important;white-space:nowrap!important;line-height:1!important}
-.pl-brand span{color:#4f46e5!important}
-.pl-nav{display:flex!important;align-items:center!important;justify-content:flex-end!important;gap:clamp(10px,1.35vw,20px)!important;margin:0!important;padding:0!important}
-.pl-nav a{display:inline-block!important;color:#475467!important;text-decoration:none!important;font-size:13px!important;font-weight:650!important;line-height:1.2!important;white-space:nowrap!important;padding:7px 0!important;margin:0!important;border:0!important;background:transparent!important}
-.pl-nav a:hover{color:#4f46e5!important;text-decoration:none!important}
-.pl-nav-toggle{display:none!important;border:1px solid #dfe4ec!important;background:#fff!important;color:#172033!important;border-radius:9px!important;padding:7px 10px!important;font-size:18px!important;line-height:1!important;cursor:pointer!important}
-@media(max-width:1050px){
- .pl-header{padding:12px 16px!important;min-height:64px!important;height:64px!important}
- .pl-nav-toggle{display:block!important}
- .pl-nav{display:none!important;position:absolute!important;left:12px!important;right:12px!important;top:64px!important;flex-direction:column!important;align-items:stretch!important;justify-content:flex-start!important;gap:0!important;background:#fff!important;border:1px solid #dfe4ec!important;border-radius:12px!important;padding:8px!important;box-shadow:0 12px 30px rgba(16,24,40,.14)!important}
- .pl-nav.open{display:flex!important}
- .pl-nav a{padding:11px 12px!important;border-radius:8px!important;font-size:14px!important}
- .pl-nav a:hover{background:#f5f7fb!important}
-}
-</style>
-</head>
+</style></head>
 <body>
-<header class="pl-header">
-  <a class="pl-brand" href="index.html" aria-label="PixelLite home">Pixel<span>Lite</span></a>
-  <button class="pl-nav-toggle" type="button" aria-label="Open navigation" aria-expanded="false">☰</button>
-  <nav class="pl-nav" aria-label="Main navigation">
+<header class="site-header">
+  <a class="logo" href="index.html">Pixel<span>Lite</span></a>
+  <button class="nav-toggle" type="button" aria-label="Open navigation" aria-expanded="false" onclick="toggleNav()">☰</button>
+  <nav class="main-nav" id="mainNav" aria-label="Main navigation">
     <a href="index.html">Home</a>
     <a href="editor.html">Editor</a>
     <a href="convert.html">Converter</a>
@@ -95,33 +77,39 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:24px 18px;bor
     <a href="privacy.html">Privacy</a>
   </nav>
 </header>
-
+<script>
+function toggleNav(){
+  const n=document.getElementById('mainNav');
+  const b=document.querySelector('.nav-toggle');
+  const open=n.classList.toggle('open');
+  b.setAttribute('aria-expanded',open?'true':'false');
+}
+document.addEventListener('click',function(e){
+  const n=document.getElementById('mainNav'),b=document.querySelector('.nav-toggle');
+  if(window.innerWidth<=900 && n.classList.contains('open') && !n.contains(e.target) && !b.contains(e.target)){
+    n.classList.remove('open');b.setAttribute('aria-expanded','false');
+  }
+});
+window.addEventListener('resize',function(){
+  if(window.innerWidth>900){
+    const n=document.getElementById('mainNav'),b=document.querySelector('.nav-toggle');
+    n.classList.remove('open');b.setAttribute('aria-expanded','false');
+  }
+});
+</script>
 
 <main><section class="hero"><h1>Privacy Policy</h1><p>Last updated: September 25, 2026</p></section>
 <article class="card">
 <h2>1. Overview</h2><p>PixelLite is a browser-based image editing and conversion service. This Privacy Policy explains what information may be processed when you use PixelLite and how the website uses analytics, advertising and contact services.</p>
 <h2>2. Image Processing</h2><p>PixelLite's image editing and conversion tools are designed to process images locally in your web browser. Images selected for editing, resizing, cropping, compression or conversion are processed on your device and are not uploaded to a PixelLite image-processing server.</p>
 <h2>3. Information You Provide</h2><p>PixelLite does not require an account to use its image tools. If you contact PixelLite by email, information included in your message may be received so your request can be answered.</p>
-<h2>4. Analytics</h2><p>PixelLite uses Google Analytics to understand website usage, such as pages viewed and interactions. The active measurement ID is <strong>G-QHZR2VLP4X</strong>.</p>
-<h2>5. Advertising</h2><p>PixelLite may display advertising through Google AdSense. Advertising services may use cookies or similar technologies according to applicable consent choices. PixelLite's publisher ID is <strong>pub-1741589992062370</strong>.</p>
-<h2>6. Consent</h2><p>Where required, PixelLite uses Google's consent mechanisms to manage consent for analytics and advertising related storage and signals.</p>
-<h2>7. Cookies and Similar Technologies</h2><p>PixelLite's core editing functions do not require cookies. Third-party services such as Google Analytics and Google AdSense may use cookies or similar technologies for their respective functions.</p>
-<h2>8. Third-Party Services</h2><p>PixelLite may use third-party services including Google Analytics and Google AdSense. These services operate under their own privacy policies and terms.</p>
+<h2>4. Website Analytics</h2><p>PixelLite may use website analytics to understand general usage of the site, such as which pages are visited and how the site is used.</p>
+<h2>5. Advertising</h2><p>PixelLite may display third-party advertising. Advertising providers may use cookies or similar technologies subject to applicable consent choices.</p>
+<h2>6. Consent</h2><p>Where required, PixelLite uses consent mechanisms to manage optional analytics and advertising technologies.</p>
+<h2>7. Cookies and Similar Technologies</h2><p>PixelLite's core editing functions do not require cookies. Third-party services used by the website may use cookies or similar technologies for their respective functions.</p>
+<h2>8. Third-Party Services</h2><p>PixelLite may use third-party services for website analytics and advertising. Those services operate under their own privacy policies and terms.</p>
 <h2>9. Changes to This Policy</h2><p>This Privacy Policy may be updated when PixelLite's features, third-party services or legal requirements change. The updated version will be published on this page with a revised date.</p>
 <h2>10. Contact</h2><p>For privacy questions, contact <a href="mailto:support@pixellite.in">support@pixellite.in</a>.</p>
 </article></main>
 <footer>PixelLite processes images locally in your browser. No image is sent to a PixelLite image-processing server.</footer>
-
-<script id="pixellite-shared-nav-script">
-(function(){
-  const header=document.querySelector('.pl-header');
-  if(!header)return;
-  const toggle=header.querySelector('.pl-nav-toggle');
-  const nav=header.querySelector('.pl-nav');
-  function close(){nav.classList.remove('open');toggle.setAttribute('aria-expanded','false');}
-  toggle.addEventListener('click',function(e){e.stopPropagation();const open=nav.classList.toggle('open');toggle.setAttribute('aria-expanded',open?'true':'false');});
-  document.addEventListener('click',function(e){if(window.innerWidth<=1050 && nav.classList.contains('open') && !nav.contains(e.target) && !toggle.contains(e.target))close();});
-  window.addEventListener('resize',function(){if(window.innerWidth>1050)close();});
-})();
-</script>
 </body></html>

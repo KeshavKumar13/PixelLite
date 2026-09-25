@@ -21,18 +21,7 @@ PixelLite is a browser based image editing and conversion toolkit.
 
 Supported image operations are designed to run locally in the browser. PixelLite does not require normal image editing and conversion uploads to a PixelLite processing server.
 
-## Analytics
 
-The active Google Analytics web stream is:
-
-- Stream name: PixelLite Web – Active
-- Measurement ID: G-QHZR2VLP4X
-
-Google Consent Mode is configured for the site.
-
-## Advertising
-
-Google AdSense is configured for PixelLite and the site includes the required ads.txt entry.
 
 ## Deployment
 
