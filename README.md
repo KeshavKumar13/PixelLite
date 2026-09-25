@@ -299,3 +299,8 @@ Improved mobile navigation across all pages. The desktop navigation remains unch
 
 ## Phase History
 - Phase 27: `PixelLite v3.6 Phase 27 add Google AdSense site verification and ads.txt`
+
+
+## Phase 28
+
+Added Google Consent Mode v2 defaults to all six HTML pages. Region-specific defaults deny analytics and advertising storage in the EEA, UK and Switzerland until the configured Google consent solution provides an update. Visitors outside those regions retain the normal granted default so Analytics measurement is not unnecessarily suppressed where the regional consent banner does not apply. A 500 ms `wait_for_update` is used for the regional denied state to give the consent solution time to update the Google tag. No editor, converter, styling, navigation, AdSense, or asset functionality was changed.

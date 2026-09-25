@@ -32,6 +32,28 @@
   "offers":{"@type":"Offer","price":"0","priceCurrency":"INR"}
 }
 </script>
+<script>
+window.dataLayer=window.dataLayer||[];
+function gtag(){dataLayer.push(arguments);}
+
+// Default consent outside the regions where the PixelLite consent banner applies.
+gtag('consent','default',{
+  'ad_storage':'granted',
+  'ad_user_data':'granted',
+  'ad_personalization':'granted',
+  'analytics_storage':'granted'
+});
+
+// Require consent in the EEA, UK and Switzerland until the consent solution updates the state.
+gtag('consent','default',{
+  'ad_storage':'denied',
+  'ad_user_data':'denied',
+  'ad_personalization':'denied',
+  'analytics_storage':'denied',
+  'wait_for_update':500,
+  'region':['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE','IS','LI','NO','GB','CH']
+});
+</script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-KYXXS5396T"></script>
 <script>
 window.dataLayer=window.dataLayer||[];
