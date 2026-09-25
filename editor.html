@@ -66,16 +66,171 @@ gtag('consent','default',{
 
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1741589992062370"
      crossorigin="anonymous"></script>
+
+@media(max-width:1050px){
+  header .site-nav{gap:9px}
+  header .site-nav a{font-size:12px}
+}
+@media(max-width:900px){
+  header{height:auto !important;min-height:64px !important;padding:12px 16px !important}
+  header .mobile-menu-toggle{display:block}
+  header .site-nav{
+    display:none;
+    position:absolute;
+    left:12px;
+    right:12px;
+    top:64px;
+    margin:0;
+    padding:8px;
+    background:#fff;
+    border:1px solid #dfe4ec;
+    border-radius:12px;
+    box-shadow:0 12px 30px rgba(16,24,40,.12);
+    flex-direction:column;
+    align-items:stretch;
+    gap:2px;
+  }
+  header.nav-open .site-nav{display:flex}
+  header .site-nav a{
+    display:block;
+    padding:10px 12px;
+    border-radius:8px;
+    font-size:13px;
+  }
+  header .site-nav a:hover{background:#f5f7fb}
+}
+
+
+/* PixelLite fixed sitewide navigation */
+header{
+  position:sticky !important;
+  top:0 !important;
+  z-index:1000 !important;
+}
+header .brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  text-decoration:none;
+  color:inherit;
+  flex-shrink:0;
+}
+header .brand-mark{
+  width:28px;
+  height:28px;
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:3px;
+  flex-shrink:0;
+}
+header .brand-mark i{
+  display:block;
+  border-radius:4px;
+  background:#4f46e5;
+}
+header .brand-mark i:nth-child(2){opacity:.8}
+header .brand-mark i:nth-child(3){opacity:.65}
+header .brand-mark i:nth-child(4){opacity:.45}
+header .logo{
+  font-size:21px !important;
+  font-weight:800 !important;
+  letter-spacing:-.5px !important;
+  white-space:nowrap;
+}
+header .logo span{color:#4f46e5}
+header .site-nav{
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  gap:clamp(10px,1.35vw,18px);
+  flex-wrap:nowrap;
+  margin-left:auto;
+}
+header .site-nav a{
+  color:#475467;
+  text-decoration:none;
+  font-size:13px;
+  font-weight:650;
+  white-space:nowrap;
+}
+header .site-nav a:hover{color:#4f46e5}
+header .mobile-menu-toggle{
+  display:none;
+  border:1px solid #dfe4ec;
+  background:#fff;
+  border-radius:9px;
+  width:40px;
+  height:38px;
+  cursor:pointer;
+  margin-left:auto;
+  padding:0;
+}
+header .mobile-menu-toggle span,
+header .mobile-menu-toggle span::before,
+header .mobile-menu-toggle span::after{
+  display:block;
+  width:18px;
+  height:2px;
+  background:#172033;
+  margin:auto;
+  content:"";
+  position:relative;
+}
+header .mobile-menu-toggle span::before{position:absolute;top:-6px;left:0}
+header .mobile-menu-toggle span::after{position:absolute;top:6px;left:0}
+
+@media(max-width:1050px){
+  header .site-nav{gap:9px}
+  header .site-nav a{font-size:12px}
+}
+@media(max-width:900px){
+  header{height:auto !important;min-height:64px !important;padding:12px 16px !important}
+  header .mobile-menu-toggle{display:block}
+  header .site-nav{
+    display:none;
+    position:absolute;
+    left:12px;
+    right:12px;
+    top:64px;
+    margin:0;
+    padding:8px;
+    background:#fff;
+    border:1px solid #dfe4ec;
+    border-radius:12px;
+    box-shadow:0 12px 30px rgba(16,24,40,.12);
+    flex-direction:column;
+    align-items:stretch;
+    gap:2px;
+  }
+  header.nav-open .site-nav{display:flex}
+  header .site-nav a{
+    display:block;
+    padding:10px 12px;
+    border-radius:8px;
+    font-size:13px;
+  }
+  header .site-nav a:hover{background:#f5f7fb}
+}
+
 </head>
 <body>
-<header><a class="brand" href="index.html" aria-label="PixelLite home"><div class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></div><div class="logo">Pixel<span>Lite</span></div></a><nav class="site-nav" aria-label="Main navigation">
-<a href="index.html">Home</a>
-<a href="editor.html">Editor</a>
-<a href="convert.html">Convert</a>
-<a href="about.html">About</a>
-<a href="contact.html">Contact</a>
-<a href="privacy.html">Privacy</a>
-</nav><button class="mobile-menu-toggle" type="button" aria-label="Open menu" aria-expanded="false"><span></span></button>
+<header>
+<a class="brand" href="index.html" aria-label="PixelLite home">
+  <div class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+  <div class="logo">Pixel<span>Lite</span></div>
+</a>
+<nav class="site-nav" aria-label="Main navigation">
+  <a href="index.html">Home</a>
+  <a href="editor.html">Editor</a>
+  <a href="convert.html">Converter</a>
+  <a href="tools.html">Tools</a>
+  <a href="guide.html">Guide</a>
+  <a href="faq.html">FAQ</a>
+  <a href="about.html">About</a>
+  <a href="contact.html">Contact</a>
+  <a href="privacy.html">Privacy</a>
+</nav>
+<button class="mobile-menu-toggle" type="button" aria-label="Open menu" aria-expanded="false"><span></span></button>
 </header>
 <main class="converter-page">
 <section class="converter-hero">
@@ -166,22 +321,38 @@ gtag('consent','default',{
 
 <script src="js/app.js?v=16.1"></script>
 
+
+
 <script>
 (function(){
   const header=document.querySelector('header');
   const toggle=document.querySelector('.mobile-menu-toggle');
-  if(!header||!toggle)return;
-  toggle.addEventListener('click',()=>{
+  const nav=document.querySelector('.site-nav');
+  if(!header||!toggle||!nav)return;
+  if(toggle.dataset.navBound==='1')return;
+  toggle.dataset.navBound='1';
+  toggle.addEventListener('click',function(){
     const open=header.classList.toggle('nav-open');
     toggle.setAttribute('aria-expanded',String(open));
     toggle.setAttribute('aria-label',open?'Close menu':'Open menu');
   });
-  document.querySelectorAll('.site-nav a').forEach(a=>a.addEventListener('click',()=>{
-    header.classList.remove('nav-open');
-    toggle.setAttribute('aria-expanded','false');
-    toggle.setAttribute('aria-label','Open menu');
-  }));
+  nav.addEventListener('click',function(e){
+    if(e.target.closest('a')){
+      header.classList.remove('nav-open');
+      toggle.setAttribute('aria-expanded','false');
+      toggle.setAttribute('aria-label','Open menu');
+    }
+  });
+  document.addEventListener('click',function(e){
+    if(window.innerWidth<=900 && header.classList.contains('nav-open') &&
+       !header.contains(e.target)){
+      header.classList.remove('nav-open');
+      toggle.setAttribute('aria-expanded','false');
+      toggle.setAttribute('aria-label','Open menu');
+    }
+  });
 })();
 </script>
+
 </body>
 </html>

@@ -60,55 +60,283 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:24px 18px;bor
  .card{padding:24px 18px}
  .info-grid{grid-template-columns:1fr}
 }
-</style></head>
-<body>
-<header class="site-header">
-  <a class="logo" href="index.html">Pixel<span>Lite</span></a>
-  <button class="nav-toggle" type="button" aria-label="Open navigation" aria-expanded="false" onclick="toggleNav()">☰</button>
-  <nav class="main-nav" id="mainNav" aria-label="Main navigation">
-    <a href="index.html">Home</a>
-    <a href="editor.html">Editor</a>
-    <a href="convert.html">Converter</a>
-    <a href="tools.html">Tools</a>
-    <a href="guide.html">Guide</a>
-    <a href="faq.html">FAQ</a>
-    <a href="about.html">About</a>
-    <a href="contact.html">Contact</a>
-    <a href="privacy.html">Privacy</a>
-  </nav>
-</header>
-<script>
-function toggleNav(){
-  const n=document.getElementById('mainNav');
-  const b=document.querySelector('.nav-toggle');
-  const open=n.classList.toggle('open');
-  b.setAttribute('aria-expanded',open?'true':'false');
+</style>
+@media(max-width:1050px){
+  header .site-nav{gap:9px}
+  header .site-nav a{font-size:12px}
 }
-document.addEventListener('click',function(e){
-  const n=document.getElementById('mainNav'),b=document.querySelector('.nav-toggle');
-  if(window.innerWidth<=900 && n.classList.contains('open') && !n.contains(e.target) && !b.contains(e.target)){
-    n.classList.remove('open');b.setAttribute('aria-expanded','false');
+@media(max-width:900px){
+  header{height:auto !important;min-height:64px !important;padding:12px 16px !important}
+  header .mobile-menu-toggle{display:block}
+  header .site-nav{
+    display:none;
+    position:absolute;
+    left:12px;
+    right:12px;
+    top:64px;
+    margin:0;
+    padding:8px;
+    background:#fff;
+    border:1px solid #dfe4ec;
+    border-radius:12px;
+    box-shadow:0 12px 30px rgba(16,24,40,.12);
+    flex-direction:column;
+    align-items:stretch;
+    gap:2px;
   }
-});
-window.addEventListener('resize',function(){
-  if(window.innerWidth>900){
-    const n=document.getElementById('mainNav'),b=document.querySelector('.nav-toggle');
-    n.classList.remove('open');b.setAttribute('aria-expanded','false');
+  header.nav-open .site-nav{display:flex}
+  header .site-nav a{
+    display:block;
+    padding:10px 12px;
+    border-radius:8px;
+    font-size:13px;
   }
-});
-</script>
+  header .site-nav a:hover{background:#f5f7fb}
+}
 
-<main><section class="hero"><h1>Contact PixelLite</h1><p>Questions, feedback or a problem with the website?</p></section>
-<article class="card">
-<h2>Get in touch</h2>
-<p>For support, feedback, suggestions or questions about PixelLite, send us an email. We will review your message and respond when possible.</p>
-<div class="info-grid">
-<div class="info-box"><h3>Support email</h3><p><a href="mailto:support@pixellite.in">support@pixellite.in</a></p><p>Use this address for website issues, feature feedback, privacy questions and general support.</p></div>
-<div class="info-box"><h3>Before contacting support</h3><p>You may find an answer in the <a href="faq.html">FAQ</a> or <a href="guide.html">Image Tools Guide</a>.</p></div>
-</div>
-<h2>Useful PixelLite pages</h2>
-<p>Go directly to the <a href="tools.html">Tools</a>, <a href="editor.html">Editor</a>, or <a href="convert.html">Converter</a>. You can also read the <a href="privacy.html">Privacy Policy</a> for information about data handling, analytics, advertising and consent.</p>
-<div class="cta-row"><a class="btn primary" href="mailto:support@pixellite.in">Email Support</a><a class="btn" href="faq.html">View FAQ</a><a class="btn" href="tools.html">Browse Tools</a></div>
-</article></main>
+
+<style>
+.contact-page{max-width:960px;margin:0 auto;padding:42px 20px 64px}
+.contact-hero{text-align:center;margin-bottom:34px}
+.contact-hero .eyebrow{margin:0 0 8px;color:#4f46e5;font-weight:800;font-size:13px;text-transform:uppercase;letter-spacing:.08em}
+.contact-hero h1{margin:0 0 10px;font-size:40px;line-height:1.15;letter-spacing:-1px}
+.contact-hero>p:last-child{max-width:620px;margin:0 auto;color:#667085}
+.contact-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.contact-card,.contact-note{background:#fff;border:1px solid #dfe4ec;border-radius:18px;padding:28px;box-shadow:0 8px 25px rgba(16,24,40,.04)}
+.contact-icon{width:44px;height:44px;border-radius:12px;background:#eef0ff;color:#4f46e5;display:grid;place-items:center;font-weight:800;font-size:20px;margin-bottom:16px}
+.contact-card h2,.contact-note h2{margin:0 0 9px;font-size:21px}
+.contact-card p,.contact-note p{color:#667085;margin:0 0 15px}
+.contact-email{display:block;font-size:18px;font-weight:750;color:#4f46e5;margin:10px 0 18px}
+.contact-button{display:inline-block;padding:10px 16px;border-radius:10px;background:#eef0f6;color:#172033;text-decoration:none;font-weight:700;margin:4px 6px 4px 0}
+.contact-button.primary{background:#4f46e5;color:#fff}
+.contact-links{display:flex;flex-direction:column;gap:10px}
+.contact-links a{color:#4f46e5;font-weight:700;text-decoration:none}
+.contact-note{margin-top:18px}
+.cta-row{margin-top:18px}
+@media(max-width:700px){
+ .contact-page{padding:28px 12px 45px}
+ .contact-hero h1{font-size:31px}
+ .contact-grid{grid-template-columns:1fr}
+ .contact-card,.contact-note{padding:22px 18px}
+}
+</style>
+
+/* PixelLite fixed sitewide navigation */
+header{
+  position:sticky !important;
+  top:0 !important;
+  z-index:1000 !important;
+}
+header .brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  text-decoration:none;
+  color:inherit;
+  flex-shrink:0;
+}
+header .brand-mark{
+  width:28px;
+  height:28px;
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:3px;
+  flex-shrink:0;
+}
+header .brand-mark i{
+  display:block;
+  border-radius:4px;
+  background:#4f46e5;
+}
+header .brand-mark i:nth-child(2){opacity:.8}
+header .brand-mark i:nth-child(3){opacity:.65}
+header .brand-mark i:nth-child(4){opacity:.45}
+header .logo{
+  font-size:21px !important;
+  font-weight:800 !important;
+  letter-spacing:-.5px !important;
+  white-space:nowrap;
+}
+header .logo span{color:#4f46e5}
+header .site-nav{
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  gap:clamp(10px,1.35vw,18px);
+  flex-wrap:nowrap;
+  margin-left:auto;
+}
+header .site-nav a{
+  color:#475467;
+  text-decoration:none;
+  font-size:13px;
+  font-weight:650;
+  white-space:nowrap;
+}
+header .site-nav a:hover{color:#4f46e5}
+header .mobile-menu-toggle{
+  display:none;
+  border:1px solid #dfe4ec;
+  background:#fff;
+  border-radius:9px;
+  width:40px;
+  height:38px;
+  cursor:pointer;
+  margin-left:auto;
+  padding:0;
+}
+header .mobile-menu-toggle span,
+header .mobile-menu-toggle span::before,
+header .mobile-menu-toggle span::after{
+  display:block;
+  width:18px;
+  height:2px;
+  background:#172033;
+  margin:auto;
+  content:"";
+  position:relative;
+}
+header .mobile-menu-toggle span::before{position:absolute;top:-6px;left:0}
+header .mobile-menu-toggle span::after{position:absolute;top:6px;left:0}
+
+@media(max-width:1050px){
+  header .site-nav{gap:9px}
+  header .site-nav a{font-size:12px}
+}
+@media(max-width:900px){
+  header{height:auto !important;min-height:64px !important;padding:12px 16px !important}
+  header .mobile-menu-toggle{display:block}
+  header .site-nav{
+    display:none;
+    position:absolute;
+    left:12px;
+    right:12px;
+    top:64px;
+    margin:0;
+    padding:8px;
+    background:#fff;
+    border:1px solid #dfe4ec;
+    border-radius:12px;
+    box-shadow:0 12px 30px rgba(16,24,40,.12);
+    flex-direction:column;
+    align-items:stretch;
+    gap:2px;
+  }
+  header.nav-open .site-nav{display:flex}
+  header .site-nav a{
+    display:block;
+    padding:10px 12px;
+    border-radius:8px;
+    font-size:13px;
+  }
+  header .site-nav a:hover{background:#f5f7fb}
+}
+
+<style>
+.contact-page{max-width:960px;margin:0 auto;padding:42px 20px 64px}
+.contact-hero{text-align:center;margin-bottom:34px}
+.contact-hero .eyebrow{margin:0 0 8px;color:#4f46e5;font-weight:800;font-size:13px;text-transform:uppercase;letter-spacing:.08em}
+.contact-hero h1{margin:0 0 10px;font-size:40px;line-height:1.15;letter-spacing:-1px}
+.contact-hero>p:last-child{max-width:620px;margin:0 auto;color:#667085}
+.contact-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.contact-card,.contact-note{background:#fff;border:1px solid #dfe4ec;border-radius:18px;padding:28px;box-shadow:0 8px 25px rgba(16,24,40,.04)}
+.contact-icon{width:44px;height:44px;border-radius:12px;background:#eef0ff;color:#4f46e5;display:grid;place-items:center;font-weight:800;font-size:20px;margin-bottom:16px}
+.contact-card h2,.contact-note h2{margin:0 0 9px;font-size:21px}
+.contact-card p,.contact-note p{color:#667085;margin:0 0 15px}
+.contact-email{display:block;font-size:18px;font-weight:750;color:#4f46e5;margin:10px 0 18px}
+.contact-button{display:inline-block;padding:10px 16px;border-radius:10px;background:#eef0f6;color:#172033;text-decoration:none;font-weight:700;margin:4px 6px 4px 0}
+.contact-button.primary{background:#4f46e5;color:#fff}
+.contact-links{display:flex;flex-direction:column;gap:10px}
+.contact-links a{color:#4f46e5;font-weight:700;text-decoration:none}
+.contact-note{margin-top:18px}
+.cta-row{margin-top:18px}
+@media(max-width:700px){.contact-page{padding:28px 12px 45px}.contact-hero h1{font-size:31px}.contact-grid{grid-template-columns:1fr}.contact-card,.contact-note{padding:22px 18px}}
+</style></head>
+<body><header>
+<a class="brand" href="index.html" aria-label="PixelLite home">
+  <div class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+  <div class="logo">Pixel<span>Lite</span></div>
+</a>
+<nav class="site-nav" aria-label="Main navigation">
+  <a href="index.html">Home</a>
+  <a href="editor.html">Editor</a>
+  <a href="convert.html">Converter</a>
+  <a href="tools.html">Tools</a>
+  <a href="guide.html">Guide</a>
+  <a href="faq.html">FAQ</a>
+  <a href="about.html">About</a>
+  <a href="contact.html">Contact</a>
+  <a href="privacy.html">Privacy</a>
+</nav>
+<button class="mobile-menu-toggle" type="button" aria-label="Open menu" aria-expanded="false"><span></span></button>
+</header>
+<main>
+  <section class="contact-page">
+    <div class="contact-hero">
+      <p class="eyebrow">PixelLite Support</p>
+      <h1>Contact PixelLite</h1>
+      <p>Have a question, found an issue, or have a suggestion? We'd be happy to hear from you.</p>
+    </div>
+    <div class="contact-grid">
+      <section class="contact-card">
+        <div class="contact-icon">✉</div>
+        <h2>Email Support</h2>
+        <p>For website issues, feature suggestions, privacy questions, or general support, email us directly.</p>
+        <a class="contact-email" href="mailto:support@pixellite.in">support@pixellite.in</a>
+        <a class="contact-button primary" href="mailto:support@pixellite.in">Email Support</a>
+      </section>
+      <section class="contact-card">
+        <div class="contact-icon">?</div>
+        <h2>Before contacting us</h2>
+        <p>You may find a quick answer in our frequently asked questions or image tools guide.</p>
+        <div class="contact-links">
+          <a href="faq.html">View FAQ →</a>
+          <a href="guide.html">Read the Guide →</a>
+          <a href="tools.html">Browse All Tools →</a>
+        </div>
+      </section>
+    </div>
+    <section class="contact-note">
+      <h2>About PixelLite</h2>
+      <p>PixelLite provides browser-based image editing, resizing, cropping, compression and conversion tools. Normal image processing happens locally in your browser.</p>
+      <div class="cta-row">
+        <a class="contact-button primary" href="editor.html">Open Image Editor</a>
+        <a class="contact-button" href="convert.html">Open Converter</a>
+        <a class="contact-button" href="privacy.html">Privacy Policy</a>
+      </div>
+    </section>
+  </section>
+</main>
 <footer>PixelLite processes images locally in your browser. No image is sent to a PixelLite image-processing server.</footer>
+
+<script>
+(function(){
+  const header=document.querySelector('header');
+  const toggle=document.querySelector('.mobile-menu-toggle');
+  const nav=document.querySelector('.site-nav');
+  if(!header||!toggle||!nav)return;
+  if(toggle.dataset.navBound==='1')return;
+  toggle.dataset.navBound='1';
+  toggle.addEventListener('click',function(){
+    const open=header.classList.toggle('nav-open');
+    toggle.setAttribute('aria-expanded',String(open));
+    toggle.setAttribute('aria-label',open?'Close menu':'Open menu');
+  });
+  nav.addEventListener('click',function(e){
+    if(e.target.closest('a')){
+      header.classList.remove('nav-open');
+      toggle.setAttribute('aria-expanded','false');
+      toggle.setAttribute('aria-label','Open menu');
+    }
+  });
+  document.addEventListener('click',function(e){
+    if(window.innerWidth<=900 && header.classList.contains('nav-open') &&
+       !header.contains(e.target)){
+      header.classList.remove('nav-open');
+      toggle.setAttribute('aria-expanded','false');
+      toggle.setAttribute('aria-label','Open menu');
+    }
+  });
+})();
+</script>
 </body></html>
