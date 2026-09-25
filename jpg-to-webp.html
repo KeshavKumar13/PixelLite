@@ -10,40 +10,22 @@
 <meta property="og:description" content="Convert JPG images to WEBP with PixelLite.">
 <meta property="og:url" content="https://pixellite.in/jpg-to-webp.html">
 <link rel="stylesheet" href="css/style.css">
-
-<style id="pixellite-shared-nav">
-.pl-header{height:70px!important;min-height:70px!important;background:#fff!important;border-bottom:1px solid #dfe4ec!important;display:flex!important;align-items:center!important;justify-content:space-between!important;padding:0 28px!important;position:sticky!important;top:0!important;z-index:9999!important;box-sizing:border-box!important;width:100%!important}
-.pl-brand{font-size:21px!important;font-weight:800!important;letter-spacing:-.5px!important;color:#172033!important;text-decoration:none!important;white-space:nowrap!important;line-height:1!important}
-.pl-brand span{color:#4f46e5!important}
-.pl-nav{display:flex!important;align-items:center!important;justify-content:flex-end!important;gap:clamp(10px,1.35vw,20px)!important;margin:0!important;padding:0!important}
-.pl-nav a{display:inline-block!important;color:#475467!important;text-decoration:none!important;font-size:13px!important;font-weight:650!important;line-height:1.2!important;white-space:nowrap!important;padding:7px 0!important;margin:0!important;border:0!important;background:transparent!important}
-.pl-nav a:hover{color:#4f46e5!important;text-decoration:none!important}
-.pl-nav-toggle{display:none!important;border:1px solid #dfe4ec!important;background:#fff!important;color:#172033!important;border-radius:9px!important;padding:7px 10px!important;font-size:18px!important;line-height:1!important;cursor:pointer!important}
-@media(max-width:1050px){
- .pl-header{padding:12px 16px!important;min-height:64px!important;height:64px!important}
- .pl-nav-toggle{display:block!important}
- .pl-nav{display:none!important;position:absolute!important;left:12px!important;right:12px!important;top:64px!important;flex-direction:column!important;align-items:stretch!important;justify-content:flex-start!important;gap:0!important;background:#fff!important;border:1px solid #dfe4ec!important;border-radius:12px!important;padding:8px!important;box-shadow:0 12px 30px rgba(16,24,40,.14)!important}
- .pl-nav.open{display:flex!important}
- .pl-nav a{padding:11px 12px!important;border-radius:8px!important;font-size:14px!important}
- .pl-nav a:hover{background:#f5f7fb!important}
-}
-</style>
 </head>
 <body>
-<header class="pl-header">
-  <a class="pl-brand" href="index.html" aria-label="PixelLite home">Pixel<span>Lite</span></a>
-  <button class="pl-nav-toggle" type="button" aria-label="Open navigation" aria-expanded="false">☰</button>
-  <nav class="pl-nav" aria-label="Main navigation">
-    <a href="index.html">Home</a>
-    <a href="editor.html">Editor</a>
-    <a href="convert.html">Converter</a>
-    <a href="tools.html">Tools</a>
-    <a href="guide.html">Guide</a>
-    <a href="faq.html">FAQ</a>
-    <a href="about.html">About</a>
-    <a href="contact.html">Contact</a>
-    <a href="privacy.html">Privacy</a>
-  </nav>
+<header>
+<a class="brand" href="index.html" aria-label="PixelLite home">
+<div class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+<div class="logo">Pixel<span>Lite</span></div>
+</a>
+<nav class="site-nav" aria-label="Main navigation">
+<a href="index.html">Home</a>
+<a href="editor.html">Editor</a>
+<a href="convert.html">Convert</a>
+<a href="about.html">About</a>
+<a href="contact.html">Contact</a>
+<a href="privacy.html">Privacy</a>
+</nav>
+<button class="mobile-menu-toggle" type="button" aria-label="Open menu" aria-expanded="false"><span></span></button>
 </header>
 <main class="container">
 <section class="hero"><h1>JPG to WEBP Converter</h1><p>Convert JPG images to WEBP online for free and prepare images for efficient web delivery.</p><a class="btn" href="convert.html">Convert JPG to WEBP</a></section>
@@ -53,18 +35,5 @@
 <section><h2>More conversions</h2><p>Explore the <a href="tools.html">PixelLite tools hub</a> for additional format conversions, resizing and compression.</p></section>
 </main>
 <footer><p>© 2026 PixelLite</p></footer>
-
-<script id="pixellite-shared-nav-script">
-(function(){
-  const header=document.querySelector('.pl-header');
-  if(!header)return;
-  const toggle=header.querySelector('.pl-nav-toggle');
-  const nav=header.querySelector('.pl-nav');
-  function close(){nav.classList.remove('open');toggle.setAttribute('aria-expanded','false');}
-  toggle.addEventListener('click',function(e){e.stopPropagation();const open=nav.classList.toggle('open');toggle.setAttribute('aria-expanded',open?'true':'false');});
-  document.addEventListener('click',function(e){if(window.innerWidth<=1050 && nav.classList.contains('open') && !nav.contains(e.target) && !toggle.contains(e.target))close();});
-  window.addEventListener('resize',function(){if(window.innerWidth>1050)close();});
-})();
-</script>
 </body>
 </html>
