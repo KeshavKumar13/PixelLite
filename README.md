@@ -6,9 +6,9 @@ Images are processed locally in the browser. The project is a static website and
 
 ## Current release
 
-**PixelLite v3.6 Phase 24**
+**PixelLite v3.6 Phase 30**
 
-Phase 17 is the stable layout baseline. Phase 24 adds the matching post upload scroll behavior to the Converter without changing the established Editor behavior.
+Phase 30 documents the active Google Analytics configuration after validating the replacement GA4 web stream. The active Measurement ID is `G-QHZR2VLP4X`. The previous stream `G-KYXXS5396T` is retained in the GA4 property for reference and is no longer used by the website.
 
 ## Pages
 
@@ -144,6 +144,18 @@ The production domain is:
 
 **https://pixellite.in/**
 
+## Google Analytics
+
+The production website uses Google Analytics 4 with the following active web stream:
+
+- Stream name: **PixelLite Web – Active**
+- Measurement ID: **G-QHZR2VLP4X**
+- Domain: **https://pixellite.in/**
+
+The website uses Google Consent Mode before the GA4 configuration call. The active stream was validated through Google Tag Assistant and GA4 Realtime, including page view and session events.
+
+The older GA4 stream `G-KYXXS5396T` remains in the GA4 property but is not referenced by the production website.
+
 ## Deployment
 
 PixelLite is deployed through **GitHub Pages** from the `main` branch.
@@ -159,6 +171,20 @@ For a normal website update:
 5. Verify the live site at `https://pixellite.in`.
 
 ## Version history
+
+### Phase 30 — GA4 active stream documentation
+- Confirmed the replacement GA4 stream receives live Realtime data.
+- Renamed the working stream to **PixelLite Web – Active**.
+- Documented the active Measurement ID `G-QHZR2VLP4X`.
+- Confirmed the production pages use the active Measurement ID.
+
+### Phase 29 — GA4 diagnostic stream
+- Added and validated a replacement GA4 web stream.
+- Updated the production pages to use `G-QHZR2VLP4X`.
+
+### Phase 28 — Google Consent Mode
+- Added Google Consent Mode defaults before the GA4 configuration.
+- Validated consent state through Google Tag Assistant.
 
 ### Phase 3
 - Separated the project into dedicated HTML, CSS and JavaScript files.
