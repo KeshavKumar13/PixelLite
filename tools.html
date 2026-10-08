@@ -153,6 +153,23 @@ body > header .mobile-menu-toggle span::after{top:6px !important}
 }
 </style>
 
+
+<style id="pixellite-adsterra-native-style">
+.pixellite-ad-native{
+  width:min(100%,760px);
+  margin:24px auto 28px;
+  min-height:90px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  overflow:hidden;
+}
+.pixellite-ad-native > div{width:100%;}
+@media(max-width:680px){
+  .pixellite-ad-native{margin:18px auto 22px;min-height:70px;}
+}
+</style>
+
 </head>
 <body>
 <header>
@@ -175,6 +192,12 @@ body > header .mobile-menu-toggle span::after{top:6px !important}
 <h1>Free Image Tools</h1>
 <p>Simple browser based tools for common image editing tasks. Your image editing operations are designed to run locally in your browser.</p>
 </section>
+
+<!-- Adsterra Native Banner -->
+<div class="pixellite-ad pixellite-ad-native" aria-label="Advertisement">
+  <script async="async" data-cfasync="false" src="https://bauval.org/21/f170b91d2f6ef4279b1cff9d2c36b961"></script>
+  <div id="container-f170b91d2f6ef4279b1cff9d2c36b961"></div>
+</div>
 <div class="grid">
 <section class="card"><h2>Image Editor</h2><p>Resize, crop, apply filters, rotate, flip and export images.</p><a class="btn" href="editor.html">Open Editor</a></section>
 <section class="card"><h2>Image Converter</h2><p>Convert supported images to another format directly in your browser.</p><a class="btn" href="convert.html">Open Converter</a></section>
