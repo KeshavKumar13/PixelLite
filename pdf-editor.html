@@ -1,3 +1,203 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>PDF Editor — Merge, Rotate, Reorder & Delete Pages | PixelLite</title><meta name="description" content="Edit PDF pages in your browser. Merge PDFs, reorder, rotate or delete pages and add a simple footer with PixelLite's free PDF editor."><link rel="canonical" href="https://pixellite.in/pdf-editor.html"><link rel="stylesheet" href="pdf-tools.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script><style id="pixellite-site-nav">body{--line:#dfe4ec;--card:#fff;--text:#172033;--accent:#4f46e5;margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:#f5f7fb;color:var(--text)}body>header{height:70px;background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 28px;position:sticky;top:0;z-index:50}.brand{display:flex;align-items:center;gap:9px;color:var(--text);text-decoration:none}.brand-mark{width:30px;height:30px;border-radius:9px;background:linear-gradient(135deg,#4f46e5,#7c3aed);display:grid;grid-template-columns:repeat(2,8px);grid-template-rows:repeat(2,8px);gap:3px;place-content:center;box-shadow:0 5px 14px rgba(79,70,229,.22)}.brand-mark i{display:block;background:#fff;border-radius:2px}.brand-mark i:nth-child(2),.brand-mark i:nth-child(3){opacity:.72}.logo{font-size:21px;font-weight:800;letter-spacing:-.5px}.logo span{color:var(--accent)}.site-nav{display:flex;align-items:center;gap:18px}.site-nav a{color:#475467;text-decoration:none;font-size:14px}.site-nav a:hover{color:var(--accent)}.mobile-menu-toggle{display:none}@media(max-width:700px){body>header{padding:0 16px}.mobile-menu-toggle{display:block;width:42px;height:42px;border:1px solid var(--line);border-radius:10px;background:#fff}.site-nav{display:none;position:absolute;top:70px;left:0;right:0;background:#fff;border-bottom:1px solid var(--line);padding:8px 16px;flex-direction:column;align-items:stretch}.nav-open .site-nav{display:flex}.site-nav a{padding:10px}.mobile-menu-toggle span,.mobile-menu-toggle span:before,.mobile-menu-toggle span:after{display:block;width:20px;height:2px;background:#172033;position:relative}.mobile-menu-toggle span:before,.mobile-menu-toggle span:after{content:'';position:absolute;left:0}.mobile-menu-toggle span:before{top:-6px}.mobile-menu-toggle span:after{top:6px}}
-</style></head><body><header><a class="brand" href="index.html" aria-label="PixelLite home"><div class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></div><div class="logo">Pixel<span>Lite</span></div></a><nav class="site-nav" aria-label="Main navigation"><a href="index.html">Home</a><a href="editor.html">Editor</a><a href="convert.html">Convert</a><a href="pdf-tools.html">PDF Tools</a><a href="about.html">About</a><a href="contact.html">Contact</a></nav><button class="mobile-menu-toggle" type="button" aria-label="Open menu" aria-expanded="false"><span></span></button></header>
-<main class="pdf-main"><section class="pdf-hero"><h1>PDF Editor</h1><p>Combine PDFs and manage pages visually. Reorder, rotate and delete pages before creating your final PDF.</p></section><div class="pdf-tool"><div class="dropzone" id="drop-zone"><h2>Drop PDF files here</h2><p>Add one or more PDFs. Their pages will appear below in editable order.</p><input id="pdf-input" type="file" accept="application/pdf,.pdf" multiple></div><div id="pdf-list" class="file-list"></div><div class="options"><div class="option"><label for="watermark">Footer text (optional)</label><input id="watermark" placeholder="e.g. PixelLite · Confidential"></div></div><div class="actions"><button class="btn" id="save">Create edited PDF</button><button class="btn secondary" id="clear">Clear</button></div><div id="status" class="status"></div><h2 class="section-title">Pages</h2><div id="thumbs" class="thumb-grid"></div><div class="pdf-note">Page order is controlled by the arrows. Rotation is applied when the PDF is created. The editor does not upload your PDF to a PixelLite server.</div></div></main><footer style="text-align:center;color:#667085;font-size:12px;padding:32px 15px">PixelLite · PDF tools run in your browser</footer><script>pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js'</script><script src="js/pdf-common.js"></script><script src="js/pdf-editor.js"></script><script>document.querySelector('.mobile-menu-toggle').onclick=function(){const h=document.querySelector('header');h.classList.toggle('nav-open');this.setAttribute('aria-expanded',h.classList.contains('nav-open'))}</script></body></html>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>PDF Editor — Edit, Reorder, Rotate & Annotate PDF | PixelLite</title><meta name="description" content="Edit PDF pages in your browser. Reorder, rotate and delete pages, add text and simple icons, and export a new PDF with PixelLite."><link rel="canonical" href="https://pixellite.in/pdf-editor.html"><link rel="stylesheet" href="pdf-tools.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script><style id="pixellite-unified-navbar">
+body > header{
+  height:70px !important;
+  min-height:70px !important;
+  background:#fff !important;
+  border-bottom:1px solid var(--line) !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:space-between !important;
+  padding:0 28px !important;
+  position:sticky !important;
+  top:0 !important;
+  z-index:50 !important;
+  gap:0 !important;
+}
+body > header .brand{
+  display:flex !important;
+  align-items:center !important;
+  gap:9px !important;
+  min-width:0 !important;
+  color:var(--text) !important;
+  text-decoration:none !important;
+}
+body > header .brand:hover,
+body > header .brand:visited,
+body > header .brand:active{color:var(--text) !important;text-decoration:none !important}
+body > header .brand-mark{
+  width:30px !important;height:30px !important;
+  border-radius:9px !important;
+  background:linear-gradient(135deg,#4f46e5,#7c3aed) !important;
+  display:grid !important;
+  grid-template-columns:repeat(2,8px) !important;
+  grid-template-rows:repeat(2,8px) !important;
+  gap:3px !important;
+  place-content:center !important;
+  box-shadow:0 5px 14px rgba(79,70,229,.22) !important;
+  flex:0 0 auto !important;
+}
+body > header .brand-mark i{
+  display:block !important;background:#fff !important;border-radius:2px !important;
+}
+body > header .brand-mark i:nth-child(1){opacity:.95 !important}
+body > header .brand-mark i:nth-child(2){opacity:.72 !important}
+body > header .brand-mark i:nth-child(3){opacity:.72 !important}
+body > header .brand-mark i:nth-child(4){opacity:.95 !important}
+body > header .logo{
+  font-size:21px !important;
+  font-weight:800 !important;
+  letter-spacing:-.5px !important;
+  color:var(--text) !important;
+  white-space:nowrap !important;
+}
+body > header .logo span{color:var(--accent) !important}
+body > header .site-nav{
+  display:flex !important;
+  align-items:center !important;
+  gap:18px !important;
+  flex-wrap:nowrap !important;
+  margin:0 !important;
+  padding:0 !important;
+  position:static !important;
+  background:transparent !important;
+  border:0 !important;
+  box-shadow:none !important;
+}
+body > header .site-nav a{
+  color:inherit !important;
+  text-decoration:none !important;
+  font-size:14px !important;
+  font-weight:400 !important;
+  opacity:.82 !important;
+  white-space:nowrap !important;
+  padding:0 !important;
+  margin:0 !important;
+  border:0 !important;
+  background:transparent !important;
+}
+body > header .site-nav a:hover,
+body > header .site-nav a[aria-current="page"]{
+  opacity:1 !important;
+  background:transparent !important;
+}
+body > header .mobile-menu-toggle{
+  display:none !important;
+  width:42px !important;height:42px !important;padding:0 !important;
+  border:1px solid var(--line) !important;
+  border-radius:10px !important;
+  background:var(--card) !important;
+  color:var(--text) !important;
+  align-items:center !important;
+  justify-content:center !important;
+  cursor:pointer !important;
+}
+body > header .mobile-menu-toggle span,
+body > header .mobile-menu-toggle span::before,
+body > header .mobile-menu-toggle span::after{
+  display:block !important;width:20px !important;height:2px !important;
+  background:currentColor !important;border-radius:2px !important;
+}
+body > header .mobile-menu-toggle span{position:relative !important}
+body > header .mobile-menu-toggle span::before,
+body > header .mobile-menu-toggle span::after{
+  content:"" !important;position:absolute !important;left:0 !important;
+}
+body > header .mobile-menu-toggle span::before{top:-6px !important}
+body > header .mobile-menu-toggle span::after{top:6px !important}
+@media(max-width:700px){
+  body > header{
+    height:70px !important;min-height:70px !important;
+    padding:0 16px !important;
+  }
+  body > header .mobile-menu-toggle{display:flex !important}
+  body > header .site-nav{
+    display:none !important;
+    position:absolute !important;
+    top:100% !important;left:0 !important;right:0 !important;
+    flex-direction:column !important;
+    align-items:stretch !important;
+    gap:0 !important;
+    padding:8px 16px 12px !important;
+    background:var(--card) !important;
+    border-bottom:1px solid var(--line) !important;
+    box-shadow:0 8px 20px rgba(0,0,0,.08) !important;
+  }
+  body > header.nav-open .site-nav{display:flex !important}
+  body > header .site-nav a{
+    padding:12px 10px !important;
+    font-size:15px !important;
+    border-radius:8px !important;
+  }
+  body > header .site-nav a:hover{background:var(--bg) !important}
+}
+</style>
+<style id="pixellite-adsterra-native-style">
+.pixellite-ad-shell{margin:24px auto 28px;width:min(100%,760px);}
+.pixellite-ad-shell .pixellite-ad{box-sizing:border-box;border:1px solid var(--line);border-radius:12px;background:var(--card);display:flex;justify-content:center;align-items:center;overflow:hidden;}
+.pixellite-ad-label{margin-top:7px;text-align:center;font-size:11px;line-height:16px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;}
+.pixellite-ad-native-shell{width:min(100%,760px);}
+.pixellite-ad-native{width:fit-content;max-width:100%;min-height:90px;margin:0 auto;}
+.pixellite-ad-native > div{width:auto;max-width:100%;}
+.pixellite-ad-468x60-shell{width:468px;max-width:100%;}
+.pixellite-ad-468x60{width:100%;min-height:60px;}
+.pixellite-ad-300x250-shell{width:300px;max-width:100%;}
+.pixellite-ad-300x250{width:100%;min-height:250px;}
+@media(max-width:680px){.pixellite-ad-shell{margin:18px auto 22px;}.pixellite-ad-native{min-height:70px;}}
+@media(max-width:520px){.pixellite-ad-468x60-shell{display:none;}}
+</style>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1741589992062370" crossorigin="anonymous"></script>
+</head><body>
+<header>
+<a class="brand" href="index.html" aria-label="PixelLite home">
+<div class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+<div class="logo">Pixel<span>Lite</span></div>
+</a>
+<nav class="site-nav" aria-label="Main navigation">
+<a href="index.html">Home</a>
+<a href="editor.html">Editor</a>
+<a href="convert.html">Convert</a>
+<a href="about.html">About</a>
+<a href="contact.html">Contact</a>
+<a href="privacy.html">Privacy</a>
+</nav>
+<button class="mobile-menu-toggle" type="button" aria-label="Open menu" aria-expanded="false"><span></span></button>
+</header>
+<main class="pdf-main"><section class="pdf-hero"><h1>PDF Editor</h1><p>Manage PDF pages and add simple annotations before exporting a clean new PDF.</p></section><div class="pdf-tool"><div class="dropzone" id="drop-zone"><h2>Drop a PDF here</h2><p>Uploading another PDF replaces the previous one automatically.</p><input id="pdf-input" type="file" accept="application/pdf,.pdf"></div><div id="pdf-list" class="file-list"></div><div class="editor-toolbar"><button class="editor-tool" type="button" onclick="document.querySelector('#editor-help').scrollIntoView({behavior:'smooth'})">Tools</button><span>Use the controls beneath each page to reorder, rotate, delete, add text, or add a simple icon.</span></div><div class="options"><div class="option"><label for="footer-text">Footer text (optional)</label><input id="footer-text" placeholder="e.g. PixelLite · Confidential"></div></div><div class="actions"><button class="btn" id="save">Download edited PDF</button><button class="btn secondary" id="clear">Remove PDF</button></div><div id="status" class="status"></div><h2 class="section-title">Pages</h2><div id="thumbs" class="thumb-grid"></div><div id="editor-help" class="pdf-note"><strong>Editing tools:</strong> ↑ ↓ reorder pages, ↻ rotate, <strong>T</strong> add text, <strong>★</strong> add a simple icon, Delete remove a page. Text and icons are placed near the top-left of the selected page in the exported PDF.</div></div></main><div class="pixellite-ad-shell pixellite-ad-native-shell">
+<div class="pixellite-ad pixellite-ad-native" aria-label="Advertisement">
+  <script async="async" data-cfasync="false" src="https://bauval.org/21/f170b91d2f6ef4279b1cff9d2c36b961"></script>
+  <div id="container-f170b91d2f6ef4279b1cff9d2c36b961"></div>
+</div>
+<div class="pixellite-ad-label">Advertisement</div>
+</div>
+<div class="pixellite-ad-shell pixellite-ad-468x60-shell">
+<div class="pixellite-ad pixellite-ad-468x60" aria-label="Advertisement">
+  <script>
+    atOptions = {
+      'key' : 'e1ef0e82020e47eee202584f45134dca',
+      'format' : 'iframe',
+      'height' : 60,
+      'width' : 468,
+      'params' : {}
+    };
+  </script>
+  <script src="https://bauval.org/22/e1ef0e82020e47eee202584f45134dca"></script>
+</div>
+<div class="pixellite-ad-label">Advertisement</div>
+</div>
+<div class="pixellite-ad-shell pixellite-ad-300x250-shell">
+<div class="pixellite-ad pixellite-ad-300x250" aria-label="Advertisement">
+  <script>
+    atOptions = {
+      'key' : '09272a64c79dff749523dec9e9bd72fc',
+      'format' : 'iframe',
+      'height' : 250,
+      'width' : 300,
+      'params' : {}
+    };
+  </script>
+  <script src="https://bauval.org/22/09272a64c79dff749523dec9e9bd72fc"></script>
+</div>
+<div class="pixellite-ad-label">Advertisement</div>
+</div>
+<footer>Your files are processed locally in your browser whenever supported.<div class="page-footer-links"><a href="index.html">Home</a><a href="editor.html">Editor</a><a href="convert.html">Convert</a><a href="pdf-tools.html">PDF Tools</a><a href="about.html">About</a><a href="contact.html">Contact</a><a href="privacy.html">Privacy</a></div><br><span class="version">PixelLite v3.6 Phase 11</span></footer><script>pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';document.querySelector('.mobile-menu-toggle').onclick=function(){const h=document.querySelector('header');h.classList.toggle('nav-open');this.setAttribute('aria-expanded',h.classList.contains('nav-open'))}</script><script src="js/pdf-common.js"></script><script src="js/pdf-editor.js"></script></body></html>
