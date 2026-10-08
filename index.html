@@ -82,7 +82,7 @@ gtag('js',new Date());gtag('config','G-QHZR2VLP4X');
 @media(max-width:680px){.home-page{padding:36px 14px 45px}.tool-grid{grid-template-columns:1fr}.tool-card{padding:23px}}
 
 /* Keep the three primary tools together on desktop. */
-.tool-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;max-width:1020px}.tool-card{padding:20px}.tool-card h2{font-size:20px}.tool-card p{font-size:13.5px}
+.tool-grid{grid-template-columns:repeat(3,minmax(0,1fr)) !important;gap:16px;max-width:1020px;width:100%}.tool-card{padding:20px}.tool-card h2{font-size:20px}.tool-card p{font-size:13.5px}
 @media(max-width:900px){.tool-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:680px){.tool-grid{grid-template-columns:1fr}.tool-card{padding:20px}}</style>
 <script async="" crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1741589992062370"></script>
@@ -233,7 +233,7 @@ body > header .mobile-menu-toggle span::after{top:6px !important}
 @media(max-width:680px){.pixellite-ad-shell{margin:18px auto 22px;}.pixellite-ad-native{min-height:70px;}}
 @media(max-width:520px){.pixellite-ad-468x60-shell{display:none;}}
 </style>
-</head>
+<style id="pixellite-home-tool-grid-fix">.home-page .tool-grid{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:16px!important;width:100%!important;max-width:1020px!important;margin:0 auto!important}.home-page .tool-card{min-width:0!important;padding:20px!important}@media(max-width:900px){.home-page .tool-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}}@media(max-width:680px){.home-page .tool-grid{grid-template-columns:1fr!important}}</style></head>
 <body>
 <header>
 <a aria-label="PixelLite home" class="brand" href="index.html">
@@ -307,11 +307,7 @@ body > header .mobile-menu-toggle span::after{top:6px !important}
 <script src="https://bauval.org/22/09272a64c79dff749523dec9e9bd72fc"></script>
 </div>
 <div class="pixellite-ad-label">Advertisement</div>
-</div><footer>Your images stay on your device and are processed locally in your browser.<div class="page-footer-links">
-<a href="index.html">Home</a><a href="editor.html">Editor</a><a href="convert.html">Convert</a><a href="about.html">About</a><a href="contact.html">Contact</a><a href="privacy.html">Privacy</a>
-</div>
-<br/><span class="version">PixelLite v3.6 Phase 11</span>
-</footer>
+</div><footer>Your files stay on your device and are processed locally in your browser whenever supported.<br/><span class="version">PixelLite v3.6</span></footer>
 <script>
 document.querySelectorAll('.tool-card[data-href]').forEach(card=>{
   const go=()=>{window.location.href=card.dataset.href};

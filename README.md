@@ -50,3 +50,7 @@ The sitemap should be submitted in Google Search Console. Avoid repeatedly reque
 ## Final maintenance guidance
 
 After the final SEO audit, prioritize fixing actual errors over frequent content changes. Allow search engines and advertising systems time to crawl and review the site.
+
+
+## Current tool set
+PixelLite includes browser-based image tools plus PDF conversion, editing, compression, merging and PDF-to-image workflows.

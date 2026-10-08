@@ -24,3 +24,7 @@
 .download-image-btn:hover{background:var(--accent2)!important;color:#fff!important}
 @media(max-width:900px){.pdf-grid{grid-template-columns:1fr 1fr}.shortcut-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:700px){.pdf-main{padding:30px 14px 44px}.pdf-grid,.shortcut-grid{grid-template-columns:1fr}.pdf-card{min-height:0}.pdf-main>.pixellite-ad-shell{width:100%}}
+
+/* Unified PixelLite footer */
+body>footer{box-sizing:border-box;text-align:center;color:#667085;font-size:12px;line-height:1.6;padding:28px 18px 34px;margin-top:28px;background:transparent;border:0;}
+body>footer .version{display:inline-block;margin-top:5px;font-size:10px;color:#98a2b3;letter-spacing:.2px;user-select:none;}
