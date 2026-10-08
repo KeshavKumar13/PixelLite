@@ -4,15 +4,6 @@ PixelLite is a browser based image editing and conversion toolkit.
 
 ## Current tools
 
-### PDF tools
-
-- PDF Converter
-- PDF Editor
-- PDF Compressor
-- PDF to Image
-- PDF Merge
-
-
 - Image Editor
 - Image Converter
 - Image Resize

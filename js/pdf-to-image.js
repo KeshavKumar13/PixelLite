@@ -21,7 +21,7 @@
         const box=document.createElement('div');box.className='page-thumb';
         const img=document.createElement('img');img.src=URL.createObjectURL(blob);img.alt='PDF page '+n+' preview';img.style.width='100%';img.style.borderRadius='7px';
         const meta=document.createElement('div');meta.className='page-number';meta.textContent='Page '+n+' · '+Math.round(view.width)+'×'+Math.round(view.height)+' px';
-        const btn=document.createElement('button');btn.className='btn download-image-btn';btn.style.width='100%';btn.style.marginTop='8px';btn.textContent='Download image';btn.onclick=()=>pdfDownload(blob,(file.name.replace(/\.pdf$/i,'')||'pdf')+'-page-'+n+'.jpg');
+        const btn=document.createElement('button');btn.className='btn';btn.style.width='100%';btn.style.marginTop='8px';btn.textContent='Download image';btn.onclick=()=>pdfDownload(blob,(file.name.replace(/\.pdf$/i,'')||'pdf')+'-page-'+n+'.jpg');
         box.append(img,meta,btn);results.appendChild(box);
         canvas.width=1;canvas.height=1;
       }
