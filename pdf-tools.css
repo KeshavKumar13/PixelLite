@@ -28,3 +28,19 @@
 /* Unified PixelLite footer */
 body>footer{box-sizing:border-box;text-align:center;color:#667085;font-size:12px;line-height:1.6;padding:28px 18px 34px;margin-top:28px;background:transparent;border:0;}
 body>footer .version{display:inline-block;margin-top:5px;font-size:10px;color:#98a2b3;letter-spacing:.2px;user-select:none;}
+
+/* Final PDF editor controls and unified buttons */
+.pdf-tool .btn,.pdf-tool .editor-tool,.pdf-tool .thumb-actions button,.download-image-btn,.open-pdf-tool{box-sizing:border-box;min-height:40px;border-radius:9px;border:1px solid var(--accent)!important;background:var(--accent)!important;color:#fff!important;font:inherit;font-weight:700;text-decoration:none!important;cursor:pointer;display:inline-flex;align-items:center;justify-content:center}
+.pdf-tool .btn:hover,.pdf-tool .editor-tool:hover,.pdf-tool .thumb-actions button:hover,.download-image-btn:hover,.open-pdf-tool:hover{background:var(--accent2)!important;border-color:var(--accent2)!important;color:#fff!important}
+.pdf-tool .btn.secondary,.pdf-tool .btn.danger{background:var(--accent)!important;border-color:var(--accent)!important;color:#fff!important}
+.pdf-tool .editor-tool:disabled{opacity:.38;cursor:not-allowed}
+.editor-toolbar{display:block;margin-top:18px;padding:16px;border:1px solid var(--line);border-radius:14px;background:#fafbff;color:var(--muted);font-size:13px}
+.editor-toolbar-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}
+.editor-toolbar-head strong{color:var(--text);font-size:16px}.editor-toolbar-head span{color:var(--accent);font-weight:700}
+.editor-toolbar-actions{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px}
+.editor-toolbar-actions .editor-tool{width:100%;padding:9px 8px}
+.page-select-note{margin-top:0;margin-bottom:14px}
+.thumb-grid .page-thumb{cursor:pointer;transition:border-color .15s,box-shadow .15s,transform .15s}.thumb-grid .page-thumb:hover{transform:translateY(-1px)}
+.thumb-grid .page-thumb.selected{border-color:var(--accent);box-shadow:0 0 0 2px rgba(79,70,229,.14)}
+@media(max-width:900px){.editor-toolbar-actions{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:600px){.editor-toolbar-head{align-items:flex-start;flex-direction:column}.editor-toolbar-actions{grid-template-columns:repeat(2,minmax(0,1fr))}}
