@@ -219,25 +219,24 @@ body > header .mobile-menu-toggle span::after{top:6px !important}
 
 
 <style id="pixellite-adsterra-native-style">
-.pixellite-ad-native{
-  width:min(100%,760px);
-  margin:24px auto 28px;
-  min-height:90px;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  overflow:hidden;
-}
+.pixellite-ad-shell{margin:24px auto 28px;width:min(100%,760px);}
+.pixellite-ad-shell .pixellite-ad{box-sizing:border-box;border:1px solid var(--line);border-radius:12px;background:var(--card);display:flex;justify-content:center;align-items:center;overflow:hidden;}
+.pixellite-ad-label{margin-top:7px;text-align:center;font-size:11px;line-height:16px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;}
+.pixellite-ad-native{width:100%;min-height:90px;}
 .pixellite-ad-native > div{width:100%;}
-@media(max-width:680px){
-  .pixellite-ad-native{margin:18px auto 22px;min-height:70px;}
-}
+.pixellite-ad-468x60-shell{width:468px;max-width:100%;}
+.pixellite-ad-468x60{width:100%;min-height:60px;}
+.pixellite-ad-300x250-shell{width:300px;max-width:100%;}
+.pixellite-ad-300x250{width:100%;min-height:250px;}
+.pixellite-ad-smartlink{width:100%;min-height:54px;padding:6px;}
+.pixellite-ad-smartlink a{display:inline-flex;align-items:center;justify-content:center;min-height:40px;padding:0 22px;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--muted);font-size:13px;text-decoration:none;}
+.pixellite-ad-smartlink a:hover{color:var(--text);border-color:var(--text);}
+@media(max-width:680px){.pixellite-ad-shell{margin:18px auto 22px;}.pixellite-ad-native{min-height:70px;}}
+@media(max-width:520px){.pixellite-ad-468x60-shell{display:none;}}
 </style>
 
 
-<style id="pixellite-adsterra-extra-style">
-.pixellite-ad-300x250{width:300px;max-width:100%;min-height:250px;margin:28px auto 34px;display:flex;justify-content:center;align-items:center;overflow:hidden;}
-</style>
+
 
 <script data-cfasync="false" src="https://abscloud.org/1/723d244fbdbaea512a7d380f86c69190"></script>
 </head>
@@ -251,7 +250,6 @@ body > header .mobile-menu-toggle span::after{top:6px !important}
 <a href="index.html">Home</a>
 <a href="editor.html">Editor</a>
 <a href="convert.html">Convert</a>
-<a href="pdf-tools.html">PDF Tools</a>
 <a href="about.html">About</a>
 <a href="contact.html">Contact</a>
 <a href="privacy.html">Privacy</a>
@@ -266,10 +264,12 @@ body > header .mobile-menu-toggle span::after{top:6px !important}
 </section>
 
 <!-- Adsterra Native Banner -->
+<div class="pixellite-ad-shell pixellite-ad-native-shell">
 <div class="pixellite-ad pixellite-ad-native" aria-label="Advertisement">
   <script async="async" data-cfasync="false" src="https://bauval.org/21/f170b91d2f6ef4279b1cff9d2c36b961"></script>
   <div id="container-f170b91d2f6ef4279b1cff9d2c36b961"></div>
-</div>
+  <div class="pixellite-ad-label">Advertisement</div>
+</div></div>
 
 <section class="tool-grid" aria-label="PixelLite tools">
 <div class="tool-card" role="link" tabindex="0" data-href="editor.html">
@@ -285,20 +285,27 @@ body > header .mobile-menu-toggle span::after{top:6px !important}
 <p>Convert between PNG, JPG and WEBP formats while keeping the image on your device.</p>
 <span class="tool-link">Open Converter →</span>
 </div>
-
-<div class="tool-card" role="link" tabindex="0" data-href="pdf-tools.html">
-<div class="tool-icon" aria-hidden="true">▣</div>
-<h2>PDF Tools</h2>
-<p>Convert, edit, compress and work with PDF pages directly in your browser.</p>
-<span class="tool-link">Open PDF Tools →</span>
-</div>
-</div>
 </section>
 
 
 </main>
 
-<!-- Adsterra 300x250 Banner -->
+<div class="pixellite-ad-shell pixellite-ad-468x60-shell">
+<div class="pixellite-ad pixellite-ad-468x60" aria-label="Advertisement">
+  <script>
+    atOptions = {
+      'key' : 'e1ef0e82020e47eee202584f45134dca',
+      'format' : 'iframe',
+      'height' : 60,
+      'width' : 468,
+      'params' : {}
+    };
+  </script>
+  <script src="https://bauval.org/22/e1ef0e82020e47eee202584f45134dca"></script>
+</div>
+  <div class="pixellite-ad-label">Advertisement</div>
+</div><!-- Adsterra 300x250 Banner -->
+<div class="pixellite-ad-shell pixellite-ad-300x250-shell">
 <div class="pixellite-ad pixellite-ad-300x250" aria-label="Advertisement">
   <script>
     atOptions = {
@@ -311,10 +318,14 @@ body > header .mobile-menu-toggle span::after{top:6px !important}
   </script>
   <script src="https://bauval.org/22/09272a64c79dff749523dec9e9bd72fc"></script>
 </div>
-
-<footer>Your images stay on your device and are processed locally in your browser.<div class="page-footer-links">
-<a href="index.html">Home</a><a href="editor.html">Editor</a><a href="convert.html">Convert</a>
-<a href="pdf-tools.html">PDF Tools</a><a href="about.html">About</a><a href="contact.html">Contact</a><a href="privacy.html">Privacy</a>
+  <div class="pixellite-ad-label">Advertisement</div>
+</div><div class="pixellite-ad-shell pixellite-ad-smartlink-shell">
+<div class="pixellite-ad pixellite-ad-smartlink" aria-label="Sponsored link">
+  <a href="https://araplhn.org/4/ddeb7741a51030368b6d62972700bba8" target="_blank" rel="sponsored noopener noreferrer">Sponsored offer</a>
+</div>
+  <div class="pixellite-ad-label">Advertisement</div>
+</div><footer>Your images stay on your device and are processed locally in your browser.<div class="page-footer-links">
+<a href="index.html">Home</a><a href="editor.html">Editor</a><a href="convert.html">Convert</a><a href="about.html">About</a><a href="contact.html">Contact</a><a href="privacy.html">Privacy</a>
 </div>
 <br><span class="version">PixelLite v3.6 Phase 11</span>
 </footer>
@@ -350,6 +361,5 @@ document.querySelectorAll('.tool-card[data-href]').forEach(card=>{
 })();
 </script>
 
-<script data-cfasync="false" src="https://bauval.org/14/0c5d1336e1809d58c4f80ca6000a7d74"></script>
 </body>
 </html>

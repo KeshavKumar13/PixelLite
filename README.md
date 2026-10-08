@@ -15,10 +15,6 @@ PixelLite is a browser based image editing and conversion toolkit.
 - JPG to PNG
 - WEBP to PNG
 - PNG to WEBP
-- PDF Converter
-- PDF Editor
-- PDF Compressor
-- PDF to JPG
 - Guide and FAQ
 
 ## Privacy and processing
@@ -54,9 +50,3 @@ The sitemap should be submitted in Google Search Console. Avoid repeatedly reque
 ## Final maintenance guidance
 
 After the final SEO audit, prioritize fixing actual errors over frequent content changes. Allow search engines and advertising systems time to crawl and review the site.
-
-## PDF processing dependencies
-
-- PDF-LIB for browser based PDF creation and page manipulation.
-- PDF.js for rendering PDF pages to images and thumbnails.
-- PDF processing remains client side for the normal PDF tools; third party CDN scripts are used to load these libraries.
